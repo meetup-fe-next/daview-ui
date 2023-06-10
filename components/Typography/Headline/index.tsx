@@ -1,5 +1,3 @@
-import React from 'react';
-
 type HeadlineType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
 
 interface HeadlineProps {
@@ -23,35 +21,11 @@ const fontWeights = {
   h5: 'font-bold',
 };
 
-const Headline: React.FC<HeadlineProps> = ({ children, type }) => {
-  let Component;
+const Headline = ({ children, type }: HeadlineProps) => {
+  const Component = type as keyof JSX.IntrinsicElements;
+  const className = `font-pretendard ${fontWeights[type]} ${fontSizes[type]} leading-150 tracking-tighter text-high-emphasis`;
 
-  switch (type) {
-    case 'h1':
-      Component = 'h1';
-      break;
-    case 'h2':
-      Component = 'h2';
-      break;
-    case 'h3':
-      Component = 'h3';
-      break;
-    case 'h4':
-      Component = 'h4';
-      break;
-    case 'h5':
-      Component = 'h5';
-      break;
-    default:
-      Component = 'h1';
-  }
-  return React.createElement(
-    Component,
-    {
-      className: `font-pretendard ${fontWeights[type]} font-bold ${fontSizes[type]} leading-150 tracking-tighter text-high-emphasis`,
-    },
-    children,
-  );
+  return <Component className={className}>{children}</Component>;
 };
 
 export default Headline;
