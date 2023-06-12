@@ -1,6 +1,6 @@
 import cn from 'classnames';
 
-interface ButtonProps {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   disabled?: boolean;
   size?: 'lg' | 'md' | 'sm'; // TODO: 상수화
