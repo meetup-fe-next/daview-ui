@@ -1,12 +1,15 @@
-interface ButtonProps {
+import cn from 'classnames';
+
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   disabled?: boolean;
   size?: 'lg' | 'md' | 'sm'; // TODO: 상수화
+  color?: 'primary' | 'dark'; // TODO: 상수화
+  shape?: 'fill' | 'outline'; // TODO: 상수화
   onClick?: (e: React.MouseEvent) => void;
 }
 
-// TODO: 관리?
-const SIZE = {
+const SIZE_STYLE = {
   lg: {
     paddingX: 'px-[16px]',
     height: 'h-[52px]',
@@ -25,21 +28,26 @@ const SIZE = {
 } as const;
 
 const Button = (props: ButtonProps) => {
-  const { children, disabled, size = 'md', onClick } = props;
+  const { children, disabled, size = 'md', color = 'dark', shape = 'fill', onClick, ...rest } = props;
 
   return (
     <button
-      className={`box-border flex flex-row items-center justify-center
-      rounded-[40px]
-      bg-primary-500
-      text-white 
-      enabled:hover:bg-primary-300
-      disabled:opacity-[.52]
-      ${SIZE[size].height} 
-      ${SIZE[size].paddingX}
-      ${SIZE[size].fontSize}`}
+      className={cn(
+        'box-border flex flex-row items-center justify-center rounded-[40px]',
+        SIZE_STYLE[size].height,
+        SIZE_STYLE[size].paddingX,
+        SIZE_STYLE[size].fontSize,
+        {
+          'bg-primary-500': color === 'primary',
+          'bg-grey-100': color === 'dark',
+        },
+        shape === 'fill'
+          ? 'text-white disabled:opacity-[.52]'
+          : 'border border-grey-100 bg-transparent text-secondary-100 disabled:opacity-[.32]',
+      )}
       disabled={disabled}
       onClick={onClick}
+      {...rest}
     >
       {children}
     </button>
