@@ -10,9 +10,10 @@ export type IconProps = {
   height?: number | string;
 
   /**
-   * 기본적으로 디자인 시스템에 정의된 color token 사용
+   * 기본적으로 디자인 시스템에 정의된 color token 앞에
+   * prefix fill- 붙여줌
    */
-  color?: string;
+  fillColor?: string;
   children: React.ReactNode;
 } & SVGProps<SVGSVGElement>;
 
@@ -22,9 +23,14 @@ const ICON_SIZE = {
   lg: 32,
 };
 
-const IconBase = ({ size = 'md', width, height, color = 'black', children, ...rest }: IconProps) => {
+const IconBase = ({ size = 'md', width, height, fillColor = 'fill-black', children, ...rest }: IconProps) => {
   return (
-    <svg width={width ? width : ICON_SIZE[size]} height={height ? height : ICON_SIZE[size]} color={color} {...rest}>
+    <svg
+      className={`${fillColor}`}
+      width={width ? width : ICON_SIZE[size]}
+      height={height ? height : ICON_SIZE[size]}
+      {...rest}
+    >
       {children}
     </svg>
   );
