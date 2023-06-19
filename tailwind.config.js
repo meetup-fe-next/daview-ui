@@ -7,6 +7,22 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        pretendard: ['Pretendard', 'sans-serif'],
+      },
+      fontSize: {
+        '3xl': '48px', // for Headline1
+        '2xl': '34px', // for Headline2
+        xl: '24px', // for Headline3
+        lg: '20px', // for Headline4
+        base: '16px', // for Headline5
+      },
+      lineHeight: {
+        '150': '150%',
+      },
+      textColor: {
+        'high-emphasis': 'rgba(0, 0, 0, 0.87)',
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
