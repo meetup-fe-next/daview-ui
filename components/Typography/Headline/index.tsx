@@ -14,18 +14,22 @@ const fontSizes = {
 };
 
 const fontWeights = {
-  h1: 'font-extrabold',
+  h1: 'font-bold', //우진님 확인으로 변경
   h2: 'font-bold',
   h3: 'font-bold',
   h4: 'font-bold',
   h5: 'font-bold',
-};
+} as const;
 
-const Headline = ({ children, type }: HeadlineProps) => {
+const Headline = ({ children, type, ...rest }: HeadlineProps) => {
   const Component = type as keyof JSX.IntrinsicElements;
   const className = `font-pretendard ${fontWeights[type]} ${fontSizes[type]} leading-150 tracking-tighter text-high-emphasis`;
 
-  return <Component className={className}>{children}</Component>;
+  return (
+    <Component className={className} {...rest}>
+      {children}
+    </Component>
+  );
 };
 
 export default Headline;
