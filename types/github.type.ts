@@ -16,3 +16,7 @@ export type GithubMarkdown = {
   type: string;
   _links: GithubMakrdownLink[];
 };
+
+export type LectureInfoType = {
+  creator: string;
+} & GithubMarkdown;

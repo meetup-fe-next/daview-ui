@@ -1,5 +1,5 @@
-import { API_URL, CONTENTS_PATH, REVALIDATE_GITHUB_DATA } from '@/constants';
-import { type GithubMarkdown } from '@/types/github.type';
+import { API_URL, REVALIDATE_GITHUB_DATA } from '@/constants';
+import { type GithubMarkdown, type LectureInfoType } from '@/types/github.type';
 
 /**
  * 최상단 카테고리 조회
@@ -46,7 +46,7 @@ export const getCreators = async () => {
  */
 export const getLectures = async () => {
   const creators = await getCreators();
-  let data: GithubMarkdown[] = [];
+  let data: LectureInfoType[] = [];
 
   for (const { name, path } of creators) {
     const res = await fetch(`${API_URL}/${path}`, {
