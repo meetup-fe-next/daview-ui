@@ -2,7 +2,7 @@ import { API_URL, CONTENTS_PATH, REVALIDATE_GITHUB_DATA } from '@/constants';
 import { type GithubMarkdown } from '@/types/github.type';
 
 /**
- * GET 최상단 카테고리
+ * 최상단 카테고리 조회
  *
  * @return ['frontend', 'backend', ...]
  */
@@ -10,49 +10,64 @@ export const getCategories = async () => {
   const res = await fetch(`${API_URL}`, {
     next: { revalidate: REVALIDATE_GITHUB_DATA },
   });
-  const data: GithubMarkdown[] = await res.json();
+  const resJson: GithubMarkdown[] = await res.json();
+  const data = resJson.filter(({ name }) => name !== 'README.md');
 
-  return data.filter(({ name }) => name !== 'README.md');
-};
-
-/**
- * GET 강의 크리에이터
- *
- * @return ['토비', '제로초', ...]
- */
-export const getCreator = async (category: string) => {
-  const res = await fetch(`${API_URL}/${category}`, {
-    next: { revalidate: REVALIDATE_GITHUB_DATA },
-  });
-  const data: GithubMarkdown[] = await res.json();
-
+  /**
+   * NOTE: 최상단의 README.md 파일은 제거하기
+   */
   return data;
 };
 
 /**
- * GET 강의
+ * 강의자 조회
+ *
+ * @return ['토비', '제로초', ...]
+ */
+export const getCreators = async () => {
+  const categories = await getCategories();
+  let data: GithubMarkdown[] = [];
+
+  for (const { path } of categories) {
+    const res = await fetch(`${API_URL}/${path}`, {
+      next: { revalidate: REVALIDATE_GITHUB_DATA },
+    });
+    const resJson = await res.json();
+
+    data = data.concat(resJson);
+  }
+  return data;
+};
+
+/**
+ * 강의 목록 조회
  *
  * @return ['토비-스프링-부트-이해와-원리', 'Slack-클론-코딩-실시간-채팅-with-React', ...]
  */
-export const getLecture = async (category: string) => {
-  const res = await fetch(`${API_URL}/${category}`, {
-    next: { revalidate: REVALIDATE_GITHUB_DATA },
-  });
-  const creators: GithubMarkdown[] = await res.json();
+export const getLectures = async () => {
+  const creators = await getCreators();
+  let data: GithubMarkdown[] = [];
 
-  let lecturesAll = [];
-
-  for (const { path } of creators) {
-    const lectureByCreator: GithubMarkdown[] = await fetch(`${API_URL}/${path}`, {
+  for (const { name, path } of creators) {
+    const res = await fetch(`${API_URL}/${path}`, {
       next: { revalidate: REVALIDATE_GITHUB_DATA },
     });
+    const resJson: GithubMarkdown[] = await res.json();
 
-    for (const lectureInfo of lectureByCreator) {
-      if (lectureInfo.name !== 'image') {
-        lecturesAll.push(lectureInfo);
-      }
-    }
+    /**
+     * NOTE:
+     * - 프로필 이미지 폴더 제거
+     * - 크리에이터 정보 추가
+     */
+    const filteredData = resJson
+      .filter(({ name }) => name !== 'image')
+      .map((item) => ({
+        ...item,
+        creator: name,
+      }));
+
+    data = data.concat(filteredData);
   }
 
-  return lecturesAll;
+  return data;
 };
