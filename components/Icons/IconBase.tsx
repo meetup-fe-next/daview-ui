@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import React, { SVGProps } from 'react';
 
 export type IconProps = {
@@ -10,10 +11,11 @@ export type IconProps = {
   height?: number | string;
 
   /**
-   * 기본적으로 디자인 시스템에 정의된 color token 앞에
-   * prefix fill- 붙여줌
+   * 기본적으로 디자인 시스템에 정의된 color token
    */
+  color?: string;
   fillColor?: string;
+  className?: string;
   children: React.ReactNode;
 } & SVGProps<SVGSVGElement>;
 
@@ -21,12 +23,18 @@ const ICON_SIZE = {
   sm: 16,
   md: 24,
   lg: 32,
-};
+} as const;
 
-const IconBase = ({ size = 'md', width, height, fillColor = 'fill-black', children, ...rest }: IconProps) => {
+const ICON_COLOR: { [key: string]: string } = {
+  black: 'fill-black',
+  white: 'fill-white',
+  'primary-300': 'fill-primary-300',
+} as const;
+
+const IconBase = ({ size = 'md', width, height, color = 'black', className, children, ...rest }: IconProps) => {
   return (
     <svg
-      className={`${fillColor}`}
+      className={cn(ICON_COLOR[color], className)}
       width={width ? width : ICON_SIZE[size]}
       height={height ? height : ICON_SIZE[size]}
       {...rest}
