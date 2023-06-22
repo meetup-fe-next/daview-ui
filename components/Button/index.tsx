@@ -1,13 +1,13 @@
 import cn from 'classnames';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+type ButtonProps = {
   children: React.ReactNode;
   disabled?: boolean;
   size?: 'lg' | 'md' | 'sm'; // TODO: 상수화
   color?: 'primary' | 'dark' | 'white'; // TODO: 상수화
   shape?: 'fill' | 'outline'; // TODO: 상수화
   onClick?: (e: React.MouseEvent) => void;
-}
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const SIZE_STYLE = {
   lg: {
