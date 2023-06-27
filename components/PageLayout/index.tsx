@@ -1,5 +1,11 @@
 import cn from 'classnames';
 
+import PageLayoutHeader from './PageLayoutHeader';
+import PageLayoutContents from './PageLayoutContents';
+import PageLayoutSearch from './PageLayoutSearch';
+
+import { BACKGROUND_COLOR } from './PageLayout.constants';
+
 type PageLayoutProps = {
   className?: string;
   innerClassName?: string;
@@ -7,11 +13,19 @@ type PageLayoutProps = {
 };
 
 function PageLayout({ className, innerClassName, children }: PageLayoutProps) {
+  const backgroundColor = BACKGROUND_COLOR;
+
   return (
-    <main className={cn('bg-secondary-200', className)}>
-      <div className={cn('mx-auto min-w-[375px] max-w-[768px] min-h-[100vh] border-4 border-red-500 px-4', innerClassName)}>{children}</div>
+    <main className={cn(backgroundColor, className)}>
+      <div className={cn('mx-auto min-h-[100vh] min-w-[375px] max-w-[768px] border-4 border-red-500', innerClassName)}>
+        {children}
+      </div>
     </main>
   );
 }
+
+PageLayout.Header = PageLayoutHeader;
+PageLayout.Contents = PageLayoutContents;
+PageLayout.Search = PageLayoutSearch;
 
 export default PageLayout;
