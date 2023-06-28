@@ -3,13 +3,14 @@ type SubtitleType = 'sub1' | 'sub2' | 'sub3' | 'sub4';
 export type SubtitleProps = {
   children: React.ReactNode;
   type: SubtitleType;
+  tag?: keyof JSX.IntrinsicElements;
 };
 
 const fontSizes = {
-  sub1: 'text-xl',
-  sub2: 'text-lg',
-  sub3: 'text-base',
-  sub4: 'text-sm',
+  sub1: 'text-lg', // 20px
+  sub2: 'text-base', // 16px
+  sub3: 'text-sm', // 14px
+  sub4: 'text-xs', // 12px
 } as const;
 
 const fontWeights = {
@@ -19,8 +20,7 @@ const fontWeights = {
   sub4: 'font-medium',
 } as const;
 
-const Subtitle = ({ children, type, ...rest }: SubtitleProps) => {
-  const Component = type as keyof JSX.IntrinsicElements;
+const Subtitle = ({ children, type, tag: Component = 'div', ...rest }: SubtitleProps) => {
   const className = `font-pretendard ${fontWeights[type]} ${fontSizes[type]} leading-150 tracking-tighter text-high-emphasis opacity-87`;
 
   return (

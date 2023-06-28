@@ -1,9 +1,9 @@
 type HeadlineType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
 
-interface HeadlineProps {
+export type HeadlineProps = {
   children: React.ReactNode;
   type: HeadlineType;
-}
+};
 
 const fontSizes = {
   h1: 'text-3xl',
@@ -23,7 +23,7 @@ const fontWeights = {
 
 const Headline = ({ children, type, ...rest }: HeadlineProps) => {
   const Component = type as keyof JSX.IntrinsicElements;
-  const className = `font-pretendard ${fontWeights[type]} ${fontSizes[type]} leading-150 tracking-tighter text-high-emphasis`;
+  const className = `font-pretendard ${fontWeights[type]} ${fontSizes[type]} leading-150 tracking-tighter text-high-emphasis opacity-87`;
 
   return (
     <Component className={className} {...rest}>

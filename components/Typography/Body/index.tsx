@@ -3,6 +3,7 @@ type BodyType = 'body1' | 'body2' | 'body3';
 export type BodyProps = {
   children: React.ReactNode;
   type: BodyType;
+  tag?: keyof JSX.IntrinsicElements;
 };
 
 const fontSizes = {
@@ -12,13 +13,12 @@ const fontSizes = {
 } as const;
 
 const fontWeights = {
-  body1: 'font-normal', // Regular
-  body2: 'font-normal', // Regular
-  body3: 'font-normal', // Regular
+  body1: 'font-normal',
+  body2: 'font-normal',
+  body3: 'font-normal',
 } as const;
 
-const Body = ({ children, type, ...rest }: BodyProps) => {
-  const Component = type as keyof JSX.IntrinsicElements;
+const Body = ({ children, type, tag: Component = 'span', ...rest }: BodyProps) => {
   const className = `font-pretendard ${fontWeights[type]} ${fontSizes[type]} leading-150 tracking-tighter text-high-emphasis opacity-87`;
 
   return (
