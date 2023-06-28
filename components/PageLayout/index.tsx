@@ -1,8 +1,7 @@
 import cn from 'classnames';
 
-import PageLayoutHeader from './PageLayoutHeader';
 import PageLayoutContents from './PageLayoutContents';
-import PageLayoutSearch from './PageLayoutSearch';
+import PageLayoutTopFixed from './PageLayoutTopFixed';
 
 import { BACKGROUND_COLOR } from './PageLayout.constants';
 
@@ -17,15 +16,12 @@ function PageLayout({ className, innerClassName, children }: PageLayoutProps) {
 
   return (
     <main className={cn(backgroundColor, className)}>
-      <div className={cn('mx-auto min-h-[100vh] min-w-[375px] max-w-[768px] border-4 border-red-500', innerClassName)}>
-        {children}
-      </div>
+      <div className={cn('mx-auto min-h-[100vh] min-w-[375px] max-w-[768px]', innerClassName)}>{children}</div>
     </main>
   );
 }
 
-PageLayout.Header = PageLayoutHeader;
 PageLayout.Contents = PageLayoutContents;
-PageLayout.Search = PageLayoutSearch;
+PageLayout.TopFixed = PageLayoutTopFixed;
 
 export default PageLayout;
