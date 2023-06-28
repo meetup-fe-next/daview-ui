@@ -23,7 +23,7 @@ const fontWeights = {
 
 const Headline = ({ children, type, ...rest }: HeadlineProps) => {
   const Component = type as keyof JSX.IntrinsicElements;
-  const className = `font-pretendard ${fontWeights[type]} ${fontSizes[type]} leading-150 tracking-tighter text-high-emphasis opacity-87`;
+  const className = `font-pretendard ${fontWeights[type]} ${fontSizes[type]} leading-150 tracking-tighter text-high-emphasis`;
 
   return (
     <Component className={className} {...rest}>

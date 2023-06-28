@@ -22,26 +22,21 @@ export default function Page() {
           Subtitle 1/Pretendard/Medium/20px
         </Subtitle>
         <Subtitle type="sub2" tag="div">
-          {' '}
-          Subtitle 2/Pretendard/Medium/16px{' '}
+          Subtitle 2/Pretendard/Medium/16px
         </Subtitle>
         <Subtitle type="sub3" tag="div">
-          {' '}
-          Subtitle 3/Pretendard/Medium/14px{' '}
+          Subtitle 3/Pretendard/Medium/14px
         </Subtitle>
         <Subtitle type="sub4" tag="div">
-          {' '}
-          Subtitle 4/Pretendard/Medium/12px{' '}
+          Subtitle 2/Pretendard/Medium/12px
         </Subtitle>
       </div>
       <div className=" mb-4">
         <Body type="body1" tag="div">
-          {' '}
-          Body 1/Pretendard/Regular/16px{' '}
+          Body 1/Pretendard/Regular/16px
         </Body>
         <Body type="body2" tag="p">
-          {' '}
-          Body 2/Pretendard/Regular/14px{' '}
+          Body 2/Pretendard/Regular/14px
         </Body>
         <Body type="body3"> Body 3/Pretendard/Regular/12px </Body>
       </div>
