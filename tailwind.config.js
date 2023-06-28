@@ -77,6 +77,9 @@ module.exports = {
         white: '#ffffff',
         black: '#000000',
       },
+      opacity: {
+        '87': '.87',
+      },
     },
   },
   plugins: [],
