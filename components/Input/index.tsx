@@ -2,7 +2,7 @@
 
 import cn from 'classnames';
 import { useMemo, useRef, useState } from 'react';
-import { ArrowLeft, CloseCircle, Search } from '@/components/Icons';
+import { ArrowLeft, CloseCircle, Search } from '../Icons';
 import { INPUT_STYLE } from './index.constant';
 
 export type InputProps = {
