@@ -1,8 +1,9 @@
 'use client';
 
 import cn from 'classnames';
-import { useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { ArrowLeft, CloseCircle, Search } from '@/components/Icons';
+import { INPUT_STYLE } from './index.constant';
 
 export type InputProps = {
   disabled?: boolean;
@@ -28,27 +29,24 @@ const Input = ({
   const [inputValue, setValue] = useState(value);
   const [isFocus, setIsFocus] = useState(false);
 
-  const isDefaultType = () => {
+  const isDefaultType = useMemo(() => {
     return !isFocus && inputValue.length === 0;
-    // return true;
-  };
+  }, [isFocus, inputValue]);
 
-  const isActiveType = () => {
+  const isActiveType = useMemo(() => {
     return isFocus;
-  };
+  }, [isFocus]);
 
-  const isValueType = () => {
+  const isValueType = useMemo(() => {
     return inputValue.length > 0;
-    // return true;
-  };
+  }, [inputValue]);
 
   return (
     <label className="relative block w-full">
       <span className="sr-only">Search</span>
 
-      {/* 좌측 버튼 */}
-      {isDefaultType() && (
-        <span className="absolute inset-y-0 left-0 flex items-center pl-[8px]">
+      {isDefaultType && (
+        <span className={INPUT_STYLE.LEFT_ICON}>
           <Search
             className={cn(disabled && 'opacity-[0.32]')}
             color=""
@@ -58,8 +56,8 @@ const Input = ({
           />
         </span>
       )}
-      {isActiveType() && (
-        <button className="absolute inset-y-0 left-0 flex items-center pl-[8px]">
+      {isActiveType && (
+        <button className={INPUT_STYLE.LEFT_ICON}>
           <ArrowLeft
             color="black"
             width={24}
@@ -78,9 +76,9 @@ const Input = ({
           'placeholder:text-secondary-600',
           'w-full py-[8px]',
           'disabled:opacity-[.32]',
-          { 'pl-[42px] pr-[15px]': isDefaultType() || isActiveType() },
-          { 'pr-[76px]': isValueType() },
-          { 'pl-[8px]': !isActiveType() && isValueType() },
+          { 'pl-[42px] pr-[15px]': isDefaultType || isActiveType },
+          { 'pr-[76px]': isValueType },
+          { 'pl-[8px]': !isActiveType && isValueType },
         )}
         type="text"
         disabled={disabled}
@@ -98,10 +96,11 @@ const Input = ({
         }}
         {...rest}
       />
-      {isValueType() && (
+
+      {isValueType && (
         <>
           <button
-            className="absolute inset-y-0 right-0 flex items-center pr-[42px]"
+            className={cn(INPUT_STYLE.RIGHT_ICON, 'pr-[42px]')}
             onMouseDown={(e) => {
               e.stopPropagation();
               setValue('');
@@ -111,7 +110,7 @@ const Input = ({
             <CloseCircle color="grey-700" width={24} height={24} />
           </button>
           <button
-            className="absolute inset-y-0 right-0 flex items-center pr-[8px]"
+            className={cn(INPUT_STYLE.RIGHT_ICON, 'pr-[8px]')}
             onMouseDown={(e) => {
               e.stopPropagation();
               onClickSearchButton && onClickSearchButton();
