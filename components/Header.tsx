@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import cn from 'classnames';
 
-import PlusIcon from '@/components/Icons/Plus';
+import { Add as AddIcon } from '@/components/Icons';
 import { CONTENS_ENROLLMENT_URL } from '@/constants';
 
 type HeaderProps = {
@@ -16,7 +16,7 @@ function Header({ className }: HeaderProps) {
         <h1 className="text-lg font-bold">DAVIEW</h1>
       </Link>
       <Link target="_blank" href={CONTENS_ENROLLMENT_URL}>
-        <PlusIcon className="cursor-pointer" />
+        <AddIcon className="h-[20px] w-[20px] cursor-pointer" />
       </Link>
     </header>
   );
