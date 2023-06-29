@@ -1,13 +1,14 @@
 import cn from 'classnames';
 
-type BadgeProps = {
+export type BadgeProps = {
   children: React.ReactNode;
   color?: 'primary' | 'secondary' | 'blue' | 'gray';
-  sort?: 'default' | 'leftIcon';
+  type?: 'default' | 'leftIcon';
+  leftIcon?: React.ReactNode;
 };
 
 const Badge = (props: BadgeProps) => {
-  const { children, color = 'primary', sort = 'default', ...rest } = props;
+  const { children, color = 'primary', type = 'default', leftIcon, ...rest } = props;
 
   const COLOR_STYLE = {
     primary: {
@@ -29,17 +30,20 @@ const Badge = (props: BadgeProps) => {
   };
 
   return (
-    <span
-      className={cn(
-        'box-border flex h-[24px] flex-row items-center justify-center gap-[10px] rounded-[40px] text-[12px] font-medium',
-        COLOR_STYLE[color].bg,
-        COLOR_STYLE[color].text,
-        sort === 'default' ? 'w-[54px]' : 'w-[72px]',
-      )}
-      {...rest}
-    >
-      {children}
-    </span>
+    <>
+      <span
+        className={cn(
+          'box-border flex h-[24px] flex-row items-center justify-center gap-1 rounded-[40px] text-[12px] font-medium',
+          COLOR_STYLE[color].bg,
+          COLOR_STYLE[color].text,
+          type === 'default' ? 'w-[54px]' : 'w-[72px]',
+        )}
+        {...rest}
+      >
+        {leftIcon && <span>{leftIcon}</span>}
+        <span className="overflow-hidden truncate whitespace-nowrap">{children}</span>
+      </span>
+    </>
   );
 };
 
