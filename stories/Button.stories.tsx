@@ -1,29 +1,29 @@
 import type { StoryObj } from '@storybook/react';
-import Button from '../components/Button';
-import { Heart } from '../components/Icons';
+import ButtonComponent from '@/components/Button';
+import { Heart } from '@/components/Icons';
 
 export default {
   title: 'components/Button',
-  component: Button,
+  component: ButtonComponent,
 };
 
-type Story = StoryObj<typeof Button>;
+type Story = StoryObj<typeof ButtonComponent>;
 
-export const Text: Story = {
+export const Button: Story = {
   render: (args) => (
-    <div className='flex gap-[20px]'>
-      <Button {...args}></Button>
-      <Button {...args}>
+    <div className="flex gap-[20px]">
+      <ButtonComponent {...args}></ButtonComponent>
+      <ButtonComponent {...args}>
         <Heart />
         {args.children}
-      </Button>
-      <Button {...args}>
+      </ButtonComponent>
+      <ButtonComponent {...args}>
         {args.children}
         <Heart />
-      </Button>
-      <Button {...args}>
+      </ButtonComponent>
+      <ButtonComponent {...args}>
         <Heart />
-      </Button>
+      </ButtonComponent>
     </div>
   ),
   argTypes: {
