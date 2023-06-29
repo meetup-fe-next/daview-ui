@@ -1,3 +1,5 @@
+const plugin = require('tailwindcss/plugin');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -8,6 +10,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      letterSpacing: {
+        tighter: '-0.5px',
+      },
       fontFamily: {
         pretendard: ['Pretendard', 'sans-serif'],
       },
@@ -82,5 +87,13 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ addUtilities }) {
+      addUtilities({
+        '.tracking-tighter': {
+          'letter-spacing': '-0.5px',
+        },
+      });
+    }),
+  ],
 };
