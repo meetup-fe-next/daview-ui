@@ -1,12 +1,18 @@
+const plugin = require('tailwindcss/plugin');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './stories/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
+      letterSpacing: {
+        tighter: '-0.5px',
+      },
       fontFamily: {
         pretendard: ['Pretendard', 'sans-serif'],
       },
@@ -76,7 +82,18 @@ module.exports = {
         white: '#ffffff',
         black: '#000000',
       },
+      opacity: {
+        '87': '.87',
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ addUtilities }) {
+      addUtilities({
+        '.tracking-tighter': {
+          'letter-spacing': '-0.5px',
+        },
+      });
+    }),
+  ],
 };

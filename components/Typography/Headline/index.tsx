@@ -1,9 +1,9 @@
 type HeadlineType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
 
-interface HeadlineProps {
+export type HeadlineProps = {
   children: React.ReactNode;
   type: HeadlineType;
-}
+};
 
 const fontSizes = {
   h1: 'text-3xl',
