@@ -11,7 +11,7 @@ export default function Page() {
   return (
     <div className=" ml-12 ">
       <div className=" mb-4">
-        <Headline type="h1"> H1/Pretendard/Extrabold/48px </Headline>
+        <Headline type="h1"> H1/Pretendard/Bold/48px </Headline>
         <Headline type="h2"> H2/Pretendard/Bold/34px </Headline>
         <Headline type="h3"> H3/Pretendard/Bold/24px </Headline>
         <Headline type="h4"> H4/Pretendard/Bold/20px </Headline>
@@ -28,7 +28,7 @@ export default function Page() {
           Subtitle 3/Pretendard/Medium/14px
         </Subtitle>
         <Subtitle type="sub4" tag="div">
-          Subtitle 2/Pretendard/Medium/12px
+          Subtitle 4/Pretendard/Medium/12px
         </Subtitle>
       </div>
       <div className=" mb-4">

@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
-import Subtitle, { SubtitleProps } from '../components/Typography/Subtitle';
+import Subtitle, { SubtitleProps } from '../../components/Typography/Subtitle';
 
 const meta: Meta<typeof Subtitle> = {
   title: 'Components/Subtitle',

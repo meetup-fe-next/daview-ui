@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
-import Headline, { HeadlineProps } from '../components/Typography/Headline';
+import Headline, { HeadlineProps } from '../../components/Typography/Headline';
 
 const meta: Meta<typeof Headline> = {
   title: 'Components/Headline',
