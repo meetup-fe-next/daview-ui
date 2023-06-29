@@ -10,7 +10,7 @@ export default async function Search() {
         <Input />
       </PageLayout.TopFixed>
       <PageLayout.Contents>
-        <h1>Searc hPage</h1>
+        <h1>Search Page</h1>
       </PageLayout.Contents>
     </>
   );
