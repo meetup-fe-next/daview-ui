@@ -1,7 +1,7 @@
 import PageLayout from '@/components/PageLayout';
 import Header from '@/components/Header';
 
-export default async function Page() {
+export default function Page() {
   return (
     <>
       <PageLayout.TopFixed>

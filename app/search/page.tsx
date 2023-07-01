@@ -2,7 +2,7 @@ import PageLayout from '@/components/PageLayout';
 import Header from '@/components/Header';
 import Input from '@/components/Input';
 
-export default async function Search() {
+export default function Page() {
   return (
     <>
       <PageLayout.TopFixed>
