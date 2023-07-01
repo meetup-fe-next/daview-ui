@@ -47,21 +47,14 @@ const Input = ({
 
       {isDefaultType && (
         <span className={INPUT_STYLE.LEFT_ICON}>
-          <Search
-            className={cn(disabled && 'opacity-[0.32]')}
-            color=""
-            strokeColor="secondary-900"
-            width={24}
-            height={24}
-          />
+          <Search className={cn(disabled && 'opacity-[0.32]')} color="" strokeColor="secondary-900" size="md" />
         </span>
       )}
       {isActiveType && (
         <button className={INPUT_STYLE.LEFT_ICON}>
           <ArrowLeft
             color="black"
-            width={24}
-            height={24}
+            size="md"
             onMouseDown={() => {
               onClickPreviousButton && onClickPreviousButton();
             }}
@@ -107,7 +100,7 @@ const Input = ({
               onClickClear && onClickClear();
             }}
           >
-            <CloseCircle color="grey-700" width={24} height={24} />
+            <CloseCircle color="grey-700" size="md" />
           </button>
           <button
             className={cn(INPUT_STYLE.RIGHT_ICON, 'pr-[8px]')}
@@ -116,7 +109,7 @@ const Input = ({
               onClickSearchButton && onClickSearchButton();
             }}
           >
-            <Search width={24} height={24} color="" strokeColor={!isFocus ? 'secondary-900' : 'primary-500'} />
+            <Search size="md" color="" strokeColor={!isFocus ? 'secondary-900' : 'primary-500'} />
           </button>
         </>
       )}
