@@ -1,12 +1,34 @@
+const plugin = require('tailwindcss/plugin');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './stories/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
+      letterSpacing: {
+        tighter: '-0.5px',
+      },
+      fontFamily: {
+        pretendard: ['Pretendard', 'sans-serif'],
+      },
+      fontSize: {
+        '3xl': '48px', // for Headline1
+        '2xl': '34px', // for Headline2
+        xl: '24px', // for Headline3
+        lg: '20px', // for Headline4
+        base: '16px', // for Headline5
+      },
+      lineHeight: {
+        '150': '150%',
+      },
+      textColor: {
+        'high-emphasis': 'rgba(0, 0, 0, 0.87)',
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
@@ -60,7 +82,18 @@ module.exports = {
         white: '#ffffff',
         black: '#000000',
       },
+      opacity: {
+        '87': '.87',
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ addUtilities }) {
+      addUtilities({
+        '.tracking-tighter': {
+          'letter-spacing': '-0.5px',
+        },
+      });
+    }),
+  ],
 };
