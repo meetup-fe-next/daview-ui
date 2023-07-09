@@ -1,22 +1,41 @@
-export type GithubMakrdownLink = {
-  self: string;
-  git: string;
-  html: string;
-};
-
-export type GithubMarkdown = {
+/**
+ * Github content API 최상위 노드
+ */
+export type GithubContentTree = {
+  type: string;
+  size: number;
   name: string;
   path: string;
   sha: string;
-  size: number;
   url: string;
-  html_url: string;
-  git_url: string;
-  download_url: string;
-  type: string;
-  _links: GithubMakrdownLink[];
+  git_url: string | null;
+  html_url: string | null;
+  download_url: string | null;
+  entries: GithubContentEntry[];
+  _links: {
+    git: string | null;
+    html: string | null;
+    self: string;
+  };
 };
 
-export type LectureInfoType = {
-  creator: string;
-} & GithubMarkdown;
+/**
+ * Github content API entries type
+ */
+export type GithubContentEntry = {
+  type: string;
+  size: number;
+  name: string;
+  path: string;
+  content: string;
+  sha: string;
+  url: string;
+  git_url: string | null;
+  html_url: string | null;
+  download_url: string | null;
+  _links: {
+    git: string | null;
+    html: string | null;
+    self: string;
+  };
+};
