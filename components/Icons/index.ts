@@ -5,4 +5,4 @@ import Profile from './Profile';
 import Search from './Search';
 import Add from './Add';
 
-export { ArrowLeft, CloseCircle, Heart, Profile, Search };
+export { ArrowLeft, CloseCircle, Heart, Profile, Search, Add };
