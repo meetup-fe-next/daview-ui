@@ -1,14 +1,19 @@
 import PageLayout from '@/components/PageLayout';
 import Header from '@/components/Header';
+import Input from '@/components/Input';
 
-export default function Page() {
+export default async function Page() {
   return (
     <>
       <PageLayout.TopFixed>
         <Header />
       </PageLayout.TopFixed>
-      <PageLayout.Contents>
-        <h1>Main Page</h1>
+      <PageLayout.Contents className="flex flex-col">
+        <h1 className="my-4 text-3xl">Main Page</h1>
+
+        <div className="flex flex-1 items-center">
+          <Input readOnly />
+        </div>
       </PageLayout.Contents>
     </>
   );

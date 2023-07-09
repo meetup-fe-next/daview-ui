@@ -17,7 +17,7 @@ export const getLectures = async ({ search }: LecturesQuery): Promise<Lectures> 
     const { hits, nbHits: total = 0 } = await algoliaSdk.getLectures({ search });
 
     for (let i = 0; i < total; i++) {
-      const { path, name } = hits[i];
+      const { objectID, path, name } = hits[i];
 
       // 2. 강의의 README.md 정보를 가져온다.
       const contents = await githubSdk.getContents(`${path}/README.md`);
@@ -28,16 +28,23 @@ export const getLectures = async ({ search }: LecturesQuery): Promise<Lectures> 
       if (fileName === 'README.md') {
         const readmeContent = await downloadTextFile(downloadUrl);
         const { frontmatter, markdown } = splitFrontmatterAndMarkdown(readmeContent);
-        const { categories, creator, platforms, language, summary } = frontmatter as LecutreFrontMatter;
+        const { category, creator, platforms, hashtags, languages, summary, link } = frontmatter as LecutreFrontMatter;
 
         items.push({
+          uuid: objectID,
           lecture: removeHyphensAndConvertToSpaces(name),
-          categories,
+          markdown,
+
+          /**
+           * frontmatter
+           */
+          category,
           creator,
           platforms,
-          language,
+          hashtags,
+          languages,
           summary,
-          markdown,
+          link,
         });
       }
     }

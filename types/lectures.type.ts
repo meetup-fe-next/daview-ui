@@ -1,19 +1,22 @@
 export type Lectures = {
-  items: LectureInfo[];
+  items: Lecture[];
   total: number;
 };
 
-export type LectureInfo = {
+export type Lecture = {
+  uuid: string;
+  lecture: string;
   markdown: string;
 } & LecutreFrontMatter;
 
 export type LecutreFrontMatter = {
-  lecture: string;
   creator: string;
-  categories: string[];
+  category: string;
   platforms: string[];
-  language: string;
+  hashtags: string[];
+  languages: string[];
   summary: string;
+  link: string;
 };
 
 export type LecturesQuery = {
