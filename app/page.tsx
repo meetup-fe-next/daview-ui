@@ -1,14 +1,15 @@
-import PageLayout from '@/components/PageLayout';
 import Header from '@/components/Header';
+import PageLayout from '@/components/PageLayout';
+import MainContainer from '@/ui/mainPage/MainContainer';
 
-export default async function Home() {
+export default function Page() {
   return (
     <>
       <PageLayout.TopFixed>
         <Header />
       </PageLayout.TopFixed>
       <PageLayout.Contents>
-        <h1>Main Page</h1>
+        <MainContainer />
       </PageLayout.Contents>
     </>
   );
