@@ -31,7 +31,7 @@ const SIZE_STYLE = {
 } as const;
 
 const Button = (props: ButtonProps) => {
-  const { children, disabled, size = 'md', color = 'dark', shape = 'fill', onClick, ...rest } = props;
+  const { children, disabled, size = 'md', color = 'dark', shape = 'fill', onClick, className, ...rest } = props;
 
   return (
     <button
@@ -52,6 +52,7 @@ const Button = (props: ButtonProps) => {
           'text-white [&>svg]:fill-white': shape === 'fill' && color !== 'white',
         },
         'disabled:opacity-[.32]',
+        className,
       )}
       disabled={disabled}
       onClick={onClick}
