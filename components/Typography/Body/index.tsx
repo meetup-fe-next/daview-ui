@@ -1,6 +1,9 @@
+import cn from 'classnames';
+
 type BodyType = 'body1' | 'body2' | 'body3';
 
 export type BodyProps = {
+  className?: string;
   children: React.ReactNode;
   type: BodyType;
   tag?: keyof JSX.IntrinsicElements;
@@ -18,11 +21,11 @@ const fontWeights = {
   body3: 'font-normal',
 } as const;
 
-const Body = ({ children, type, tag: Component = 'span', ...rest }: BodyProps) => {
-  const className = `font-pretendard ${fontWeights[type]} ${fontSizes[type]} leading-150 tracking-tighter text-high-emphasis`;
+const Body = ({ children, type, tag: Component = 'span', className, ...rest }: BodyProps) => {
+  const bodyStyle = `font-pretendard ${fontWeights[type]} ${fontSizes[type]} leading-150 tracking-tighter text-high-emphasis`;
 
   return (
-    <Component className={className} {...rest}>
+    <Component className={cn(bodyStyle, className)} {...rest}>
       {children}
     </Component>
   );

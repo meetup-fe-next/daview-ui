@@ -1,8 +1,11 @@
+import cn from 'classnames';
+
 type SubtitleType = 'sub1' | 'sub2' | 'sub3' | 'sub4';
 
 export type SubtitleProps = {
   children: React.ReactNode;
   type: SubtitleType;
+  className?: string;
   tag?: keyof JSX.IntrinsicElements;
 };
 
@@ -20,11 +23,11 @@ const fontWeights = {
   sub4: 'font-medium',
 } as const;
 
-const Subtitle = ({ children, type, tag: Component = 'div', ...rest }: SubtitleProps) => {
-  const className = `font-pretendard ${fontWeights[type]} ${fontSizes[type]} leading-150 tracking-tighter text-high-emphasis `;
+const Subtitle = ({ children, type, tag: Component = 'div', className, ...rest }: SubtitleProps) => {
+  const subtitleStyle = `font-pretendard ${fontWeights[type]} ${fontSizes[type]} leading-150 tracking-tighter text-high-emphasis`;
 
   return (
-    <Component className={className} {...rest}>
+    <Component className={cn(subtitleStyle, className)} {...rest}>
       {children}
     </Component>
   );
