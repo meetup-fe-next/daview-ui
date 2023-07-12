@@ -1,6 +1,9 @@
+import cn from 'classnames';
+
 type HeadlineType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
 
 export type HeadlineProps = {
+  className?: string;
   children: React.ReactNode;
   type: HeadlineType;
 };
@@ -21,12 +24,12 @@ const fontWeights = {
   h5: 'font-bold',
 } as const;
 
-const Headline = ({ children, type, ...rest }: HeadlineProps) => {
+const Headline = ({ children, type, className, ...rest }: HeadlineProps) => {
   const Component = type as keyof JSX.IntrinsicElements;
-  const className = `font-pretendard ${fontWeights[type]} ${fontSizes[type]} leading-150 tracking-tighter text-high-emphasis`;
+  const headlineStyle = `font-pretendard ${fontWeights[type]} ${fontSizes[type]} leading-150 tracking-tighter text-high-emphasis`;
 
   return (
-    <Component className={className} {...rest}>
+    <Component className={cn(headlineStyle, className)} {...rest}>
       {children}
     </Component>
   );

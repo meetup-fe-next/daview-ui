@@ -3,6 +3,7 @@ import cn from 'classnames';
 type ButtonProps = {
   children: React.ReactNode;
   disabled?: boolean;
+  className?: string;
   size?: 'lg' | 'md' | 'sm'; // TODO: 상수화
   color?: 'primary' | 'dark' | 'white'; // TODO: 상수화
   shape?: 'fill' | 'outline'; // TODO: 상수화
@@ -31,7 +32,7 @@ const SIZE_STYLE = {
 } as const;
 
 const Button = (props: ButtonProps) => {
-  const { children, disabled, size = 'md', color = 'dark', shape = 'fill', onClick, ...rest } = props;
+  const { children, disabled, size = 'md', color = 'dark', shape = 'fill', className, onClick, ...rest } = props;
 
   return (
     <button
@@ -52,6 +53,7 @@ const Button = (props: ButtonProps) => {
           'text-white [&>svg]:fill-white': shape === 'fill' && color !== 'white',
         },
         'disabled:opacity-[.32]',
+        className,
       )}
       disabled={disabled}
       onClick={onClick}

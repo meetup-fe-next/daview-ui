@@ -9,6 +9,7 @@ export type InputProps = {
   disabled?: boolean;
   placeholder?: string;
   value?: string;
+  className?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onClickClear?: () => void;
   onClickPreviousButton?: () => void;
@@ -19,6 +20,7 @@ const Input = ({
   disabled,
   placeholder,
   value = '',
+  className,
   onChange,
   onClickClear,
   onClickPreviousButton,
@@ -72,6 +74,7 @@ const Input = ({
           { 'pl-[42px] pr-[15px]': isDefaultType || isActiveType },
           { 'pr-[76px]': isValueType },
           { 'pl-[8px]': !isActiveType && isValueType },
+          className,
         )}
         type="text"
         disabled={disabled}
