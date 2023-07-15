@@ -1,5 +1,6 @@
 import githubSdk from '../libs/githubSdk';
 
+import { type Categoires } from '@/types/categories.type';
 import { type GithubContentEntry } from '@/types/github.type';
 
 /**
@@ -9,7 +10,7 @@ import { type GithubContentEntry } from '@/types/github.type';
  */
 export const getCategories = async () => {
   const contents: GithubContentEntry[] = await githubSdk.getContents('contents');
-  const categories = contents.map(({ name, path }) => ({ name, path }));
+  const categories: Categoires = contents.map(({ name, path }) => ({ name, path }));
 
   return categories;
 };

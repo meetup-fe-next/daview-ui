@@ -3,13 +3,15 @@
  */
 export const GITHUB_USER_NAME = 'meetup-fe-next';
 export const GITHUB_REPOSITORY_NAME = 'daview-contents';
-export const API_URL = `https://api.github.com/repos/${GITHUB_USER_NAME}/${GITHUB_REPOSITORY_NAME}/contents`;
+export const GITHUB_REPOSITORY_API_URL = `https://api.github.com/repos/${GITHUB_USER_NAME}/${GITHUB_REPOSITORY_NAME}/contents`;
+export const GITHUB_REPOSITORY_BRANCH = 'develop';
 
 /**
  * Algolia API 관련
  */
 export const ALGOLIA_APP_ID = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID as string;
 export const ALGOLIA_API_KEY = process.env.NEXT_PUBLIC_ALGOLIA_API_KEY as string;
+export const ALGOLIA_ADMIN_API_KEY = process.env.NEXT_PUBLIC_ALGOLIA_ADMIN_API_KEY as string;
 export const ALGOLIA_READ_HOST = `https://${ALGOLIA_APP_ID}-dsn.algolia.net` as string;
 export const ALGOLIA_WRITE_HOST = `${ALGOLIA_APP_ID}.algolia.net` as string;
 
