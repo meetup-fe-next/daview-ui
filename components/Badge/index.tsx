@@ -1,14 +1,15 @@
 import cn from 'classnames';
+// import Subtitle from '@/components/Typography/Subtitle';
+// Subtitle으로 변경 필요
 
-export type BadgeProps = {
+type BadgeProps = {
   children: React.ReactNode;
   color?: 'primary' | 'secondary' | 'blue' | 'gray';
-  type?: 'default' | 'leftIcon';
-  leftIcon?: React.ReactNode;
+  className?: string;
 };
 
 const Badge = (props: BadgeProps) => {
-  const { children, color = 'primary', type = 'default', leftIcon, ...rest } = props;
+  const { children, color = 'primary', className, ...rest } = props;
 
   const COLOR_STYLE = {
     primary: {
@@ -27,21 +28,20 @@ const Badge = (props: BadgeProps) => {
       bg: 'bg-grey-50',
       text: 'text-grey-700',
     },
-  };
+  } as const;
 
   return (
     <>
       <span
         className={cn(
-          'box-border flex h-[24px] flex-row items-center justify-center gap-1 rounded-[40px] text-[12px] font-medium',
+          'box-border flex h-[24px] w-[54px] flex-row items-center justify-center gap-1 rounded-[40px] px-2 py-[3px] text-xs font-medium',
           COLOR_STYLE[color].bg,
           COLOR_STYLE[color].text,
-          type === 'default' ? 'w-[54px]' : 'w-[72px]',
+          className,
         )}
         {...rest}
       >
-        {leftIcon && <span>{leftIcon}</span>}
-        <span className="overflow-hidden truncate whitespace-nowrap">{children}</span>
+        <p className="overflow-hidden truncate whitespace-nowrap">{children}</p>
       </span>
     </>
   );
