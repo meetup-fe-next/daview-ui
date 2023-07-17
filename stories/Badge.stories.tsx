@@ -1,29 +1,19 @@
 import React from 'react';
-import { Meta, StoryObj } from '@storybook/react';
-import Badge, { BadgeProps } from '../components/Badge';
-import ExclamationMark from '../components/Icons/ExclamationMark';
+import { StoryObj } from '@storybook/react';
+import BadgeComponent from '@/components/Badge';
 
 export default {
   title: 'components/Badge',
-  component: Badge,
-} as Meta;
+  component: BadgeComponent,
+};
 
-export const Primary = () => <Badge color="primary">Badge</Badge>;
+type Story = StoryObj<typeof BadgeComponent>;
 
-export const Secondary = () => <Badge color="secondary">Badge</Badge>;
-
-export const Blue = () => <Badge color="blue">Badge</Badge>;
-
-export const Gray = () => <Badge color="gray">Badge</Badge>;
-
-type Story = StoryObj<typeof Badge>;
-
-export const LeftIconWithPrimary: Story = {
-  render: (args) => <Badge {...args} />,
-  args: {
-    color: 'primary',
-    children: 'Badge',
-    type: 'leftIcon',
-    leftIcon: <ExclamationMark width={14} height={14} />,
-  },
+export const Badge: Story = {
+  render: (args) => (
+    <div className="flex gap-5">
+      <BadgeComponent {...args}>Badge</BadgeComponent>
+      <BadgeComponent {...args}>Too Long~~~~~~~~~~!!!!!!!</BadgeComponent>
+    </div>
+  ),
 };
