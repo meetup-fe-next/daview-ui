@@ -1,66 +1,42 @@
-import algoliaSdk from '../libs/algoliaSDK';
+import { getCreatorsFromGithub } from './creators';
 import githubSdk from '../libs/githubSdk';
 import { downloadTextFile, splitFrontmatterAndMarkdown, removeHyphensAndConvertToSpaces } from '../utils';
 
-import type { LecutreFrontMatter, LecturesQuery, Lectures } from '@/types/lectures.type';
+import { type Creators } from '@/types/creators.type';
+import { type Lectures } from '@/types/lectures.type';
+import { type ContentsFrontmatter } from '@/types/github.type';
 
 /**
- * getLectures
- *
- * @description 강의 리스트 조회
+ * github 에서 강의 리스트 조회
  */
-export const getLectures = async ({ search }: LecturesQuery): Promise<Lectures> => {
-  const items = [];
+export const getLecturesFromGithub = async () => {
+  const creators: Creators = await getCreatorsFromGithub();
+  const lectures: Lectures = [];
 
-  try {
-    // 1. 알고리아에서 search에 해당하는 강의들을 조회한다.
-    const { hits, nbHits: total = 0 } = await algoliaSdk.getLectures({ search });
+  for (const { lectures: githubLectures } of creators) {
+    for (const githubLecture of githubLectures) {
+      const { name: lectureName, path: lecturePath } = githubLecture;
+      const lectureContentsPath = `${lecturePath}/CONTENTS.md`;
 
-    for (let i = 0; i < total; i++) {
-      const { objectID, path, name } = hits[i];
+      const { download_url: downloadUrl } = await githubSdk.getContents(lectureContentsPath);
+      const lectureContentsFile = await downloadTextFile(downloadUrl);
 
-      // 2. 강의의 README.md 정보를 가져온다.
-      const contents = await githubSdk.getContents(`${path}/README.md`);
+      const { frontmatter, markdown } = splitFrontmatterAndMarkdown(lectureContentsFile);
+      const { platforms, hashtags, languages, summary, link } = frontmatter as ContentsFrontmatter;
 
-      // 3. README.md 를 다운 받고, frontmatter와 markdown을 파싱한다.
-      const { name: fileName, download_url: downloadUrl } = contents;
-
-      if (fileName === 'README.md') {
-        const readmeContent = await downloadTextFile(downloadUrl);
-        const { frontmatter, markdown } = splitFrontmatterAndMarkdown(readmeContent);
-        const { category, creator, platforms, hashtags, languages, summary, link } = frontmatter as LecutreFrontMatter;
-
-        items.push({
-          uuid: objectID,
-          lecture: removeHyphensAndConvertToSpaces(name),
-          markdown,
-
-          /**
-           * frontmatter
-           */
-          category,
-          creator,
+      lectures.push({
+        name: removeHyphensAndConvertToSpaces(lectureName),
+        markdown,
+        frontmatter: {
           platforms,
           hashtags,
           languages,
           summary,
           link,
-        });
-      }
+        },
+      });
     }
-
-    return { items, total };
-  } catch (error) {
-    console.log(`[getLectures] :: ${error}`);
-    throw new Error('Lectures 가져오기 실패');
   }
-};
 
-/**
- * getLecture
- *
- * @description 강의 조회
- */
-export const getLecture = async () => {
-  return { items: [] };
+  return lectures;
 };

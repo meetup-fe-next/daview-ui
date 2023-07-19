@@ -39,3 +39,14 @@ export type GithubContentEntry = {
     self: string;
   };
 };
+
+/**
+ * github CONTENTS.md frontmatter 정보
+ * */
+export type ContentsFrontmatter = {
+  platforms: string[];
+  languages: string[];
+  summary: string;
+  hashtags: string[];
+  link: string;
+};

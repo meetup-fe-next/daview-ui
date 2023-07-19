@@ -1,22 +1,11 @@
-export type Lectures = {
-  items: Lecture[];
-  total: number;
-};
+import { type ContentsFrontmatter } from './github.type';
 
-export type Lecture = {
-  uuid: string;
-  lecture: string;
+export type Lectures = Lecutre[];
+
+export type Lecutre = {
+  name: string;
   markdown: string;
-} & LecutreFrontMatter;
-
-export type LecutreFrontMatter = {
-  creator: string;
-  category: string;
-  platforms: string[];
-  hashtags: string[];
-  languages: string[];
-  summary: string;
-  link: string;
+  frontmatter: ContentsFrontmatter;
 };
 
 export type LecturesQuery = {

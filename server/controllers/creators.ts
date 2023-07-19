@@ -1,17 +1,17 @@
 import { replaceDashWithSpace } from '@/utils';
 
 import githubSdk from '../libs/githubSdk';
-import { getCategories } from './categories';
+import { getCategoriesFromGithub } from './categories';
 
 import { type GithubContentEntry } from '@/types/github.type';
 import { type CategoryName, type Categories } from '@/types/categories.type';
 import { type Creators, type Creator } from '@/types/creators.type';
 
 /**
- * 크리에이터 리스트 조회
+ * github에서 크리에이터 리스트 조회
  */
-export const getCreators = async (): Promise<Creators> => {
-  const categories: Categories = await getCategories();
+export const getCreatorsFromGithub = async (): Promise<Creators> => {
+  const categories: Categories = await getCategoriesFromGithub();
   const creators: Creators = [];
 
   for (const { path: creatorPath } of categories) {
@@ -20,6 +20,7 @@ export const getCreators = async (): Promise<Creators> => {
     for (const { name: creatorName, path: lecturesPath } of contents) {
       /**
        * category
+       *
        * @description lecturesPath에서 category를 추출한다.
        * @example lecturesPath = 'contents/frontend/드림코딩-엘리' -> category = 'frontend'
        */
