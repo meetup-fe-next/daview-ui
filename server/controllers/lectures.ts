@@ -1,5 +1,6 @@
 import { getCreatorsFromGithub } from './creators';
 import githubSdk from '../libs/githubSdk';
+import algoliaSdk from '../libs/algoliaSDK';
 import { downloadTextFile, splitFrontmatterAndMarkdown, removeHyphensAndConvertToSpaces } from '../utils';
 
 import { type Creators } from '@/types/creators.type';
@@ -9,7 +10,7 @@ import { type ContentsFrontmatter } from '@/types/github.type';
 /**
  * github 에서 강의 리스트 조회
  */
-export const getLecturesFromGithub = async () => {
+export const getLecturesFromGithub = async (): Promise<Lectures> => {
   const creators: Creators = await getCreatorsFromGithub();
   const lectures: Lectures = [];
 
@@ -39,4 +40,14 @@ export const getLecturesFromGithub = async () => {
   }
 
   return lectures;
+};
+
+/**
+ * algolia에 강의 리스트 저장
+ */
+export const saveLecturesToAlgolia = async () => {
+  const lectures = await getLecturesFromGithub();
+  const res = await algoliaSdk.saveObjectToIndex(lectures);
+
+  return res;
 };

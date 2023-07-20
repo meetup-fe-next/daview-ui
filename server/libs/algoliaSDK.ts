@@ -27,14 +27,15 @@ const getLectures = async ({ search }: LecturesQuery) => {
   return data;
 };
 
-const saveObjectToIndex = async (indexName: string = 'lectures', objects: any) => {
+const saveObjectToIndex = async (objects: any, indexName: string = 'lectures') => {
   const index = client.initIndex(indexName);
 
   try {
-    const response = await index.saveObjects(objects, {
+    const res = await index.saveObjects(objects, {
       autoGenerateObjectIDIfNotExist: true,
     });
-    console.log('Object saved:', response);
+
+    return res;
   } catch (error) {
     console.error('Error saving object:', error);
   }

@@ -1,7 +1,9 @@
 import { replaceDashWithSpace } from '@/utils';
 
-import githubSdk from '../libs/githubSdk';
 import { getCategoriesFromGithub } from './categories';
+
+import githubSdk from '../libs/githubSdk';
+import algoliaSdk from '../libs/algoliaSDK';
 
 import { type GithubContentEntry } from '@/types/github.type';
 import { type CategoryName, type Categories } from '@/types/categories.type';
@@ -38,4 +40,14 @@ export const getCreatorsFromGithub = async (): Promise<Creators> => {
   }
 
   return creators;
+};
+
+/**
+ * algolia에 크리에이터 리스트 저장
+ */
+export const saveCreatorsToAlgolia = async () => {
+  const creators = await getCreatorsFromGithub();
+  const res = await algoliaSdk.saveObjectToIndex(creators, 'creators');
+
+  return res;
 };
