@@ -1,7 +1,10 @@
 import { GITHUB_REPOSITORY_API_URL, GITHUB_REPOSITORY_BRANCH, REVALIDATE_GITHUB_DATA } from '@/constants';
 
 /**
- * path 하위 content 정보 가져오기
+ * [GET] Github Repository contents API - getContents
+ *
+ * @description path 하위의 Repository content를 가져오는 API
+ * @links https://docs.github.com/en/rest/repos/contents?apiVersion=2022-11-28#get-repository-content
  */
 const getContents = async (path: string) => {
   const res = await fetch(`${GITHUB_REPOSITORY_API_URL}/${path}?ref=${GITHUB_REPOSITORY_BRANCH}`, {

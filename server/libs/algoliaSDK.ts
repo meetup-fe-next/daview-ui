@@ -7,9 +7,6 @@ import {
   REVALIDATE_GITHUB_DATA,
 } from '@/constants';
 
-import { Lectures, Lecutre } from '@/types/lectures.type';
-import { type ObjectToSave, type ObjectsToSave } from '@/types/algolia.type';
-
 const ALGOLIA_HEADERS = {
   'Content-Type': 'application/json',
   'X-Algolia-Application-Id': ALGOLIA_APP_ID,
