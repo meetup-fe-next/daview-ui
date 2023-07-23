@@ -1,18 +1,18 @@
 import { getCreatorsFromGithub } from './creators';
 import githubSdk from '../libs/githubSdk';
 import algoliaSdk from '../libs/algoliaSDK';
-import { downloadTextFile, splitFrontmatterAndMarkdown, removeHyphensAndConvertToSpaces } from '../utils';
+import { downloadTextFile, splitFrontmatterAndMarkdown, removeHyphensAndConvertToSpaces } from '../utils/common';
 
 import { type Creators } from '@/types/creators.type';
-import { type Lectures } from '@/types/lectures.type';
+import { type Lectures, type Lecutre } from '@/types/lectures.type';
 import { type ContentsFrontmatter } from '@/types/github.type';
 
 /**
- * github 에서 강의 리스트 조회
+ * [GET] github 에서 강의 리스트 조회
  */
 export const getLecturesFromGithub = async (): Promise<Lectures> => {
-  const creators: Creators = await getCreatorsFromGithub();
-  const lectures: Lectures = [];
+  const { items: creators } = await getCreatorsFromGithub();
+  const lectures: Lecutre[] = [];
 
   for (const { lectures: githubLectures } of creators) {
     for (const githubLecture of githubLectures) {
@@ -39,15 +39,30 @@ export const getLecturesFromGithub = async (): Promise<Lectures> => {
     }
   }
 
-  return lectures;
+  return { items: lectures, total: lectures.length };
 };
 
 /**
- * algolia에 강의 리스트 저장
+ * [GET] algolia 에서 강의 검색 후 리스트 반환
+ */
+export const searchLecturesFromAlgolia = async (search: string): Promise<Lectures> => {
+  const { hits, nbHits } = await algoliaSdk.getObjectsFromIndex('lectures', search);
+
+  return {
+    items: hits,
+    total: nbHits,
+  };
+};
+
+/**
+ * [POST] algolia에 강의 리스트 저장
  */
 export const saveLecturesToAlgolia = async () => {
-  const lectures = await getLecturesFromGithub();
-  const res = await algoliaSdk.saveObjectToIndex(lectures);
-
-  return res;
+  try {
+    const { items: lectures } = await getLecturesFromGithub();
+    const res = await algoliaSdk.saveObjectsToIndex('lectures', lectures);
+    return res;
+  } catch (err) {
+    console.error(err);
+  }
 };

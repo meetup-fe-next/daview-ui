@@ -1,7 +1,6 @@
 import { replaceDashWithSpace } from '@/utils';
 
 import { getCategoriesFromGithub } from './categories';
-
 import githubSdk from '../libs/githubSdk';
 import algoliaSdk from '../libs/algoliaSDK';
 
@@ -10,11 +9,11 @@ import { type CategoryName, type Categories } from '@/types/categories.type';
 import { type Creators, type Creator } from '@/types/creators.type';
 
 /**
- * github에서 크리에이터 리스트 조회
+ * [GET] github에서 크리에이터 리스트 조회
  */
 export const getCreatorsFromGithub = async (): Promise<Creators> => {
   const categories: Categories = await getCategoriesFromGithub();
-  const creators: Creators = [];
+  const creators: Creator[] = [];
 
   for (const { path: creatorPath } of categories) {
     const contents: GithubContentEntry[] = await githubSdk.getContents(creatorPath);
@@ -39,15 +38,31 @@ export const getCreatorsFromGithub = async (): Promise<Creators> => {
     }
   }
 
-  return creators;
+  return { items: creators, total: creators.length };
 };
 
 /**
- * algolia에 크리에이터 리스트 저장
+ * [GET] algolia 에서 강의 검색 후 리스트 반환
+ */
+export const searchCreatorsFromAlgolia = async (search: string): Promise<Creators> => {
+  const { hits, nbHits } = await algoliaSdk.getObjectsFromIndex('creators', search);
+
+  return {
+    items: hits,
+    total: nbHits,
+  };
+};
+
+/**
+ * [POST] algolia에 크리에이터 리스트 저장
  */
 export const saveCreatorsToAlgolia = async () => {
-  const creators = await getCreatorsFromGithub();
-  const res = await algoliaSdk.saveObjectToIndex(creators, 'creators');
+  try {
+    const { items: creators } = await getCreatorsFromGithub();
+    const res = await algoliaSdk.saveObjectsToIndex('creators', creators);
 
-  return res;
+    return res;
+  } catch (error) {
+    console.error(error);
+  }
 };
