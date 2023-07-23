@@ -1,5 +1,17 @@
-import SearchContainer from '@/ui/searchPage/SearchContainer';
+import PageLayout from '@/components/PageLayout';
+import Header from '@/components/Header';
+import Input from '@/components/Input';
 
 export default function Page() {
-  return <SearchContainer />;
+  return (
+    <>
+      <PageLayout.TopFixed>
+        <Header />
+        <Input />
+      </PageLayout.TopFixed>
+      <PageLayout.Contents>
+        <h1>Search Page</h1>
+      </PageLayout.Contents>
+    </>
+  );
 }

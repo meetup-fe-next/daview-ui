@@ -1,6 +1,7 @@
 import PageLayout from '@/components/PageLayout';
 import Header from '@/components/Header';
 import Input from '@/components/Input';
+import Test from '@/ui/Test';
 
 export default async function Page() {
   return (
@@ -11,7 +12,7 @@ export default async function Page() {
       <PageLayout.Contents className="flex flex-col">
         <h1 className="my-4 text-3xl">Main Page</h1>
 
-        <div className="flex flex-1 items-center">
+        <div className="flex flex-1 flex-col items-center">
           <Input readOnly />
         </div>
       </PageLayout.Contents>
