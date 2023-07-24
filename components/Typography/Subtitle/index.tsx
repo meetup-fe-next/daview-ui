@@ -7,6 +7,7 @@ export type SubtitleProps = {
   type: SubtitleType;
   className?: string;
   tag?: keyof JSX.IntrinsicElements;
+  color?: keyof typeof TYPOGRAPHY_COLORS;
 };
 
 const fontSizes = {
@@ -23,8 +24,9 @@ const fontWeights = {
   sub4: 'font-medium',
 } as const;
 
-const Subtitle = ({ children, type, tag: Component = 'div', className, ...rest }: SubtitleProps) => {
-  const subtitleStyle = `font-pretendard ${fontWeights[type]} ${fontSizes[type]} leading-150 tracking-tighter text-high-emphasis`;
+const Subtitle = ({ children, type, tag: Component = 'div', className, color, ...rest }: SubtitleProps) => {
+  const colorClass = color ? `text-${color}` : 'secondary-900';
+  const subtitleStyle = `font-pretendard ${fontWeights[type]} ${fontSizes[type]} leading-150 tracking-tighter ${colorClass}`;
 
   return (
     <Component className={cn(subtitleStyle, className)} {...rest}>
