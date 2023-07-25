@@ -1,8 +1,4 @@
-'use client';
-
 import cn from 'classnames';
-import PageLayout from '@/components/PageLayout';
-import Header from '@/components/Header';
 import Subtitle from '@/components/Typography/Subtitle';
 import Input from '@/components/Input';
 import Headline from '@/components/Typography/Headline';
