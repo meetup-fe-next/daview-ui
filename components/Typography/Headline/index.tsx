@@ -6,6 +6,7 @@ export type HeadlineProps = {
   className?: string;
   children: React.ReactNode;
   type: HeadlineType;
+  color?: keyof typeof TYPOGRAPHY_COLORS;
 };
 
 const fontSizes = {
@@ -24,12 +25,13 @@ const fontWeights = {
   h5: 'font-bold',
 } as const;
 
-const Headline = ({ children, type, className, ...rest }: HeadlineProps) => {
+const Headline = ({ children, type, className, color, ...rest }: HeadlineProps) => {
   const Component = type as keyof JSX.IntrinsicElements;
-  const headlineStyle = `font-pretendard ${fontWeights[type]} ${fontSizes[type]} leading-150 tracking-tighter text-high-emphasis`;
+  const colorClass = color ? `text-${color}` : 'secondary-900';
+  const headlineStyle = `font-pretendard ${fontWeights[type]} ${fontSizes[type]} leading-150 tracking-tighter ${colorClass}`;
 
   return (
-    <Component className={cn(headlineStyle, className)} {...rest}>
+    <Component className= {cn(headlineStyle, className)} {...rest}>
       {children}
     </Component>
   );
