@@ -7,7 +7,7 @@ export type HeadlineProps = {
   children: React.ReactNode;
   type: HeadlineType;
   color?: keyof typeof TYPOGRAPHY_COLORS;
-}
+};
 
 const fontSizes = {
   h1: 'text-3xl',

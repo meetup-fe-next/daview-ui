@@ -1,9 +1,9 @@
 import { Meta, StoryObj } from '@storybook/react';
-import Body, { BodyProps } from '../../components/Typography/Body';
+import BodyComponent, { BodyProps } from '../../components/Typography/Body';
 
-const meta: Meta<typeof Body> = {
-  title: 'Components/Body',
-  component: Body,
+const meta: Meta<typeof BodyComponent> = {
+  title: 'Components/Typography',
+  component: BodyComponent,
   argTypes: {
     type: {
       options: ['body1', 'body2', 'body3'],
@@ -46,29 +46,11 @@ export default meta;
 
 type Story = StoryObj<BodyProps>;
 
-export const Body1: Story = {
+export const Body: Story = {
   args: {
     type: 'body1',
     color: 'secondary-900',
     children: 'Body 1/Pretendard/Regular/16px',
   },
-  render: (args) => <Body {...args} />,
-};
-
-export const Body2: Story = {
-  args: {
-    type: 'body2',
-    color: 'secondary-900',
-    children: 'Body 2/Pretendard/Regular/14px',
-  },
-  render: (args) => <Body {...args} />,
-};
-
-export const Body3: Story = {
-  args: {
-    type: 'body3',
-    color: 'secondary-900',
-    children: 'Body 3/Pretendard/Regular/12px',
-  },
-  render: (args) => <Body {...args} />,
+  render: (args) => <BodyComponent {...args} />,
 };
