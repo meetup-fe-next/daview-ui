@@ -3,10 +3,11 @@ import cn from 'classnames';
 type BodyType = 'body1' | 'body2' | 'body3';
 
 export type BodyProps = {
-  className?: string;
   children: React.ReactNode;
   type: BodyType;
   tag?: keyof JSX.IntrinsicElements;
+  className?: string;
+  color?: keyof typeof TYPOGRAPHY_COLORS;
 };
 
 const fontSizes = {
@@ -21,8 +22,9 @@ const fontWeights = {
   body3: 'font-normal',
 } as const;
 
-const Body = ({ children, type, tag: Component = 'span', className, ...rest }: BodyProps) => {
-  const bodyStyle = `font-pretendard ${fontWeights[type]} ${fontSizes[type]} leading-150 tracking-tighter text-high-emphasis`;
+const Body = ({ children, type, tag: Component = 'span', color, className, ...rest }: BodyProps) => {
+  const colorClass = color ? `text-${color}` : 'secondary-900';
+  const bodyStyle = `font-pretendard ${fontWeights[type]} ${fontSizes[type]} leading-150 tracking-tighter ${colorClass}`;
 
   return (
     <Component className={cn(bodyStyle, className)} {...rest}>
