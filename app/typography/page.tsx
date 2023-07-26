@@ -11,6 +11,9 @@ export default function Page() {
   return (
     <div className=" ml-12 ">
       <div className=" mb-4">
+        <Headline type="h1" weights={500} > Find Lecture </Headline>
+        <Headline type="h1"> Find Lecture </Headline>
+        <Headline type="h1" font='Poppins'> H1/Poppins/Bold/48px </Headline>
         <Headline type="h1"> H1/Pretendard/Bold/48px </Headline>
         <Headline type="h2"> H2/Pretendard/Bold/34px </Headline>
         <Headline type="h3"> H3/Pretendard/Bold/24px </Headline>
