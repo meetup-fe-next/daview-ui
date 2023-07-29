@@ -1,8 +1,7 @@
 import PageLayout from '@/components/PageLayout';
 import Header from '@/components/Header';
-import Input from '@/components/Input';
 
-export default async function Lectures() {
+export default function Page() {
   return (
     <>
       <PageLayout.TopFixed>

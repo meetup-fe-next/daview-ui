@@ -16,7 +16,7 @@ function PageLayout({ className, innerClassName, children }: PageLayoutProps) {
 
   return (
     <main className={cn(backgroundColor, className)}>
-      <div className={cn('mx-auto min-h-[100vh] min-w-[375px] max-w-[768px]', innerClassName)}>{children}</div>
+      <div className={cn('flex flex-col mx-auto min-h-[100vh] min-w-[375px] max-w-[768px]', innerClassName)}>{children}</div>
     </main>
   );
 }
