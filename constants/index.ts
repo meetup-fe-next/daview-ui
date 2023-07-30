@@ -20,3 +20,10 @@ export const ALGOLIA_WRITE_HOST = `https://${ALGOLIA_APP_ID}.algolia.net` as str
  */
 export const CONTENS_ENROLLMENT_URL = 'https://github.com/meetup-fe-next/daview-contents/issues/new/choose'; // 강의 등록 페이지 링크
 export const REVALIDATE_GITHUB_DATA = 60 * 3; // 3분
+
+/**
+ * Algolia Autocomplete
+ */
+export const INSTANT_SEARCH_INDEX_NAME = 'creators';
+export const INSTANT_SEARCH_QUERY_SUGGESTIONS = 'creators_query_suggestions';
+export const INSTANT_SEARCH_HIERARCHICAL_ATTRIBUTES = ['hierarchicalCategories.lvl0', 'hierarchicalCategories.lvl1'];
