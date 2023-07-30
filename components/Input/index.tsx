@@ -68,8 +68,8 @@ const Input = ({
         ref={ref}
         className={cn(
           'box-border border-b-2 border-secondary-900 bg-transparent text-[20px] outline-none focus:border-b-primary-500',
-          'placeholder:text-secondary-600',
-          'w-full py-[8px]',
+          'placeholder:text-grey-500',
+          'w-full py-[15px]',
           'disabled:opacity-[.32]',
           { 'pl-[42px] pr-[15px]': isDefaultType || isActiveType },
           { 'pr-[76px]': isValueType },
