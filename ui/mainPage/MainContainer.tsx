@@ -4,7 +4,7 @@ import Input from '@/components/Input';
 import Headline from '@/components/Typography/Headline';
 import Button from '@/components/Button';
 import SearchSuggestion from '@/ui/mainPage/SearchSuggestion';
-import GithubProfile from '@/ui/mainPage/GithubProfile';
+import ContributorsProfile from '@/ui/mainPage/ContributorsProfile';
 
 const MainContainer = () => {
   return (
@@ -18,7 +18,7 @@ const MainContainer = () => {
       <Button size="lg" className={cn('mt-8 w-full')}>
         전체 강의 보기
       </Button>
-      <GithubProfile />
+      <ContributorsProfile />
     </>
   );
 };

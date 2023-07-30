@@ -2,7 +2,7 @@ import { replaceDashWithSpace } from '@/utils';
 
 import { getCategoriesFromGithub } from './categories';
 import githubSdk from '../libs/githubSdk';
-import algoliaSdk from '../libs/algoliaSDK';
+import algoliaSdk from '../libs/algoliaSdk';
 
 import { type GithubContentEntry } from '@/types/github.type';
 import { type CategoryName, type Categories } from '@/types/categories.type';

@@ -1,6 +1,6 @@
 import { getCreatorsFromGithub } from './creators';
 import githubSdk from '../libs/githubSdk';
-import algoliaSdk from '../libs/algoliaSDK';
+import algoliaSdk from '../libs/algoliaSdk';
 import { downloadTextFile, splitFrontmatterAndMarkdown, removeHyphensAndConvertToSpaces } from '../utils/common';
 
 import { type Creators } from '@/types/creators.type';
