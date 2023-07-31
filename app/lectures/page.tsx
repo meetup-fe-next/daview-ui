@@ -1,6 +1,7 @@
 import PageLayout from '@/components/PageLayout';
 import Header from '@/components/Header';
 import Input from '@/components/Input';
+import LectureContainer from '@/ui/lecturePage/LectureContainer';
 
 export default function Page() {
   return (
@@ -10,7 +11,8 @@ export default function Page() {
         <Input />
       </PageLayout.TopFixed>
       <PageLayout.Contents>
-        <h1>Lectures Page</h1>
+        {/* @ts-expect-error Async Server Component */}
+        <LectureContainer />
       </PageLayout.Contents>
     </>
   );
