@@ -25,4 +25,3 @@ jobs:
       run: |
         git checkout fork_repo/feature/auto-sync-with-github-action
         git merge origin/feature/auto-sync-with-github-action
-        git push fork_repo feature/auto-sync-with-github-action
