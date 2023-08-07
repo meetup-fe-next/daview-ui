@@ -1,0 +1,35 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "commitType": "docs",
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "kuongee",
+      "name": "Jeesoo Min",
+      "avatar_url": "https://avatars.githubusercontent.com/u/34534423?v=4",
+      "profile": "https://github.com/kuongee",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "jun094",
+      "name": "HolyMoly Jun",
+      "avatar_url": "https://avatars.githubusercontent.com/u/42564107?v=4",
+      "profile": "https://github.com/jun094",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "skipCi": true,
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "projectName": "daview-ui",
+  "projectOwner": "meetup-fe-next"
+}
