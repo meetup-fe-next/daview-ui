@@ -15,7 +15,7 @@ const DefaultInput = (props: any) => {
       <Input
         {...props}
         value={value}
-        onChange={(e) => {
+        onChange={(e:any) => {
           setValue(e.target.value);
         }}
         onClickClear={() => {
