@@ -1,0 +1,18 @@
+name: Automatically sync to a fork repository
+on:
+  push:
+    branches:
+      - feature/auto-sync-with-github-action
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+      
+    - name: Fetch from Fork Repository
+      run: |
+        git remote add fork_repo https://github.com/meetup-fe-next/daview-ui.git
+        git fetch fork_repo
