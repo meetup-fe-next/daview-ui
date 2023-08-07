@@ -23,5 +23,5 @@ jobs:
 
     - name: Merge changes into develop
       run: |
-        git checkout fork_repo/feature/auto-sync-with-github-action
+        git checkout -b fork_repo/feature/auto-sync-with-github-action
         git merge origin/feature/auto-sync-with-github-action
