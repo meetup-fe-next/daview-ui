@@ -14,5 +14,5 @@ jobs:
       
     - name: Fetch from Fork Repository
       run: |
-        git remote add fork_repo https://github.com/meetup-fe-next/daview-ui.git
+        git remote add fork_repo https://github.com/daview-next/daview-ui.git
         git fetch fork_repo
