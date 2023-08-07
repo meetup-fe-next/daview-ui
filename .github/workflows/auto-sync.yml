@@ -12,6 +12,11 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v2
       
+    - name: Configure Git
+      run: |
+        git config user.name "${{ secrets.FORK_USERNAME }}"
+        git config user.email "${{ secrets.FORK_USERNAME }}@gmail.com"
+    
     - name: Fetch from Fork Repository
       run: |
         git remote add fork_repo https://${{ secrets.FORK_USERNAME }}:${{ secrets.FORK_GITHUB_TOKEN }}@github.com/daview-next/daview-ui.git
