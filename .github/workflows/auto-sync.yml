@@ -14,7 +14,7 @@ jobs:
       
     - name: Fetch from Fork Repository
       run: |
-        git remote add fork_repo https://daview-next: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@github.com/daview-next/daview-ui.git
+        git remote add fork_repo https://${{ secrets.FORK_USERNAME }}:${{ secrets.FORK_GITHUB_TOKEN }}@github.com/daview-next/daview-ui.git
         git fetch fork_repo
 
     - name: Merge changes into develop
