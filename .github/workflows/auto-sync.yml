@@ -14,14 +14,12 @@ jobs:
     
     - name: Fetch from Fork Repository
       run: |
-        git remote add fork_repo https://${{ secrets.FORK_USERNAME }}:${{ secrets.FORK_GITHUB_TOKEN }}@github.com/daview-next/daview-ui.git
+        git remote add fork_repo https://daview-next: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@github.com/daview-next/daview-ui.git
         git fetch
 
     - name: log
       run: |
          git remote -v
-         echo ${{ secrets.FORK_USERNAME }}
-         echo ${{ secrets.FORK_GITHUB_TOKEN }}
 
     - name: Merge changes into develop
       run: |
