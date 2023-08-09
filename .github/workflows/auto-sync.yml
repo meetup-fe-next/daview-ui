@@ -11,19 +11,14 @@ jobs:
     steps:
     - name: Check out code
       uses: actions/checkout@v2
-      
-    - name: Configure Git
-      run: |
-        git config user.name "${{ secrets.FORK_USERNAME }}"
-        git config user.email "${{ secrets.FORK_USERNAME }}@gmail.com"
     
     - name: Fetch from Fork Repository
       run: |
         git remote add fork_repo https://${{ secrets.FORK_USERNAME }}:${{ secrets.FORK_GITHUB_TOKEN }}@github.com/daview-next/daview-ui.git
-        git fetch fork_repo
+        git fetch
 
     - name: Merge changes into develop
       run: |
-        git checkout -b fork_repo/feature/auto-sync-with-github-action
+        git switch fork_repo/feature/auto-sync-with-github-action --detach
         git merge origin/feature/auto-sync-with-github-action
         git push fork_repo feature/auto-sync-with-github-action
