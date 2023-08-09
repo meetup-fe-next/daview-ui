@@ -17,6 +17,9 @@ jobs:
         git remote add fork_repo https://${{ secrets.FORK_USERNAME }}:${{ secrets.FORK_GITHUB_TOKEN }}@github.com/daview-next/daview-ui.git
         git fetch
 
+    - name: log
+      run: git remote -v
+
     - name: Merge changes into develop
       run: |
         git switch fork_repo/feature/auto-sync-with-github-action --detach
