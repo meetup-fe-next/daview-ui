@@ -18,7 +18,10 @@ jobs:
         git fetch
 
     - name: log
-      run: git remote -v
+      run: |
+         git remote -v
+         echo ${{ secrets.FORK_USERNAME }}
+         echo ${{ secrets.FORK_GITHUB_TOKEN }}
 
     - name: Merge changes into develop
       run: |
