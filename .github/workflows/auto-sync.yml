@@ -12,14 +12,15 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v2
     
-    - name: Fetch from Fork Repository
+    - name: Set up Git
       run: |
         git remote add fork_repo https://daview-next:${{ secrets.FORK_GITHUB_TOKEN }}@github.com/daview-next/daview-ui.git
-        git fetch
+        git fetch fork_repo
 
-    - name: log
+    - name: Fetch from origin repository
       run: |
-         git remote -v
+        git fetch origin
+        git checkout origin/feature/auto-sync-with-github-action
 
     - name: Merge changes into develop
       run: |
