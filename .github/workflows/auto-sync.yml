@@ -24,6 +24,6 @@ jobs:
 
     - name: Merge changes into develop
       run: |
-        git switch fork_repo/feature/auto-sync-with-github-action --detach
-        git merge origin/feature/auto-sync-with-github-action
-        git push fork_repo feature/auto-sync-with-github-action
+        git switch feature/auto-sync-with-github-action --detach
+        git merge origin/feature/auto-sync-with-github-action --allow-unrelated-histories
+        git push fork_repo HEAD:feature/auto-sync-with-github-action
