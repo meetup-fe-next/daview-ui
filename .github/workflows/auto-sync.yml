@@ -22,4 +22,4 @@ jobs:
       - name: Push to Fork Repository
         run: |
           git remote add fork_repo git@github.com:daview-next/daview-ui.git
-          git push fork_repo HEAD:$GITHUB_REF
+          git fetch fork_repo
