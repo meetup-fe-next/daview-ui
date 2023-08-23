@@ -1,36 +1,29 @@
-name: Automatically sync to a fork repository
+name: Sync Repository
+
 on:
   push:
     branches:
-      - feature/auto-sync-with-github-action
+      - feature/auto-sync-with-github-action  # 또는 동기화하려는 브랜치 이름
 
 permissions: write-all
 
 jobs:
-  fetch:
+  sync:
     runs-on: ubuntu-latest
     
     steps:
-    - name: Check out code
+    - name: Check out repository A
       uses: actions/checkout@v2
+      with:
+        repository: meetup-fe-next/daview-ui  # 레포지토리 A의 경로
+        ref: ${{ github.event.ref }}
     
-    - name: Set up Git
-      run: |
-        git remote add fork_repo https://daview-next:${{ secrets.FORK_GITHUB_TOKEN }}@github.com/daview-next/daview-ui.git
-        git fetch fork_repo
+    - name: Push to repository B
+      uses: ad-m/github-push-action@master
+      with:
+        repository: daview-next/daview-ui  # 레포지토리 B의 경로
+        github_token: ${{ secrets.FORK_GITHUB_TOKEN }}  # 레포지토리 B에 접근할 토큰
 
-    - name: Fetch from origin repository
-      run: |
-        git remote rm origin
-        git remote add origin https://daview-next:${{ secrets.FORK_GITHUB_TOKEN }}@github.com/meetup-fe-next/daview-ui.git
-        git fetch origin
-        git checkout origin/feature/auto-sync-with-github-action
 
-    - name: Merge changes into develop
-      run: |
-        git switch feature/auto-sync-with-github-action --detach
-        git merge origin/feature/auto-sync-with-github-action --allow-unrelated-histories
-    
-    - name: Push branch
-      run: |
-        git push -f fork_repo HEAD:feature/auto-sync-with-github-action
+
+
