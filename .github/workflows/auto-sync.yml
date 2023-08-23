@@ -19,7 +19,7 @@ jobs:
         ref: ${{ github.event.ref }}
     
     - name: Push to repository B
-      uses: ad-m/github-push-action@master
+      uses: ad-m/github-push-action@feature/auto-sync-with-github-action
       with:
         repository: daview-next/daview-ui  # 레포지토리 B의 경로
         github_token: ${{ secrets.FORK_GITHUB_TOKEN }}  # 레포지토리 B에 접근할 토큰
