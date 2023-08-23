@@ -3,7 +3,7 @@ name: Sync Repository
 on:
   push:
     branches:
-      - feature/auto-sync-with-github-action  # 또는 동기화하려는 브랜치 이름
+      - develop  # 또는 동기화하려는 브랜치 이름
 
 permissions: write-all
 
@@ -26,7 +26,7 @@ jobs:
         github_token: ${{ secrets.FORK_GITHUB_TOKEN }}
         repository: daview-next/daview-ui
         force: true
-        branch: ${{ github.head_ref }}
+        branch: develop
 
 
 
