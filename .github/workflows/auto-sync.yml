@@ -21,6 +21,7 @@ jobs:
 
     - name: Fetch from origin repository
       run: |
+        git remote rm origin
         git remote add origin https://daview-next:${{ secrets.FORK_GITHUB_TOKEN }}@github.com/meetup-fe-next/daview-ui.git
         git fetch origin
         git checkout origin/feature/auto-sync-with-github-action
