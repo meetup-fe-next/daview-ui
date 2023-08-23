@@ -26,6 +26,7 @@ jobs:
         github_token: ${{ secrets.FORK_GITHUB_TOKEN }}
         repository: daview-next/daview-ui
         force: true
+        branch: ${{ github.head_ref }}
 
 
 
