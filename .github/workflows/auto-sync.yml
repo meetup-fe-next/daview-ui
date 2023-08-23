@@ -8,22 +8,23 @@ on:
 permissions: write-all
 
 jobs:
-  sync:
+  build:
     runs-on: ubuntu-latest
-    
     steps:
-    - name: Check out repository A
-      uses: actions/checkout@v3
+    - uses: actions/checkout@v3
       with:
-        repository: meetup-fe-next/daview-ui  # 레포지토리 A의 경로
-        ref: ${{ github.event.ref }}
-    
-    - name: Push to repository B
+        ref: ${{ github.head_ref }}
+        fetch-depth: 0
+        token: ${{ secrets.FORK_GITHUB_TOKEN }}
+    - name: Commit files
+      run: |
+        git config --local user.email "daview.next@gmail.com"
+        git config --local user.name "daview-next"
+    - name: Push changes
       uses: ad-m/github-push-action@master
       with:
-        repository: daview-next/daview-ui  # 레포지토리 B의 경로
-        github_token: ${{ secrets.FORK_GITHUB_TOKEN }}  # 레포지토리 B에 접근할 토큰
-        branch: ${{ github.head_ref }}
+        github_token: ${{ secrets.FORK_GITHUB_TOKEN }}
+        repository: daview-next/daview-ui
         force: true
 
 
