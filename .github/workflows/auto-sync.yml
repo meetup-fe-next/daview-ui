@@ -1,25 +1,33 @@
-name: Sync to Fork Repository
-
+name: Automatically sync to a fork repository
 on:
   push:
     branches:
-      - feature/auto-sync-with-github-action  # 원하는 브랜치명으로 변경
+      - feature/auto-sync-with-github-action
+
+permissions: write-all
 
 jobs:
-  sync:
+  fetch:
     runs-on: ubuntu-latest
-
+    
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v2
+    - name: Check out code
+      uses: actions/checkout@v2
+    
+    - name: Set up Git
+      run: |
+        git remote add fork_repo https://daview-next:${{ secrets.FORK_GITHUB_TOKEN }}@github.com/daview-next/daview-ui.git
+        git fetch fork_repo
+        git config user.name 'jun094'
+        git config user.email 'jun094@naver.com'
 
-      - name: Set up SSH key
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
+    - name: Fetch from origin repository
+      run: |
+        git fetch origin
+        git checkout origin/feature/auto-sync-with-github-action
 
-      - name: Push to Fork Repository
-        run: |
-          git remote add fork_repo git@github.com:daview-next/daview-ui.git
-          git fetch fork_repo
+    - name: Merge changes into develop
+      run: |
+        git switch feature/auto-sync-with-github-action --detach
+        git merge origin/feature/auto-sync-with-github-action --allow-unrelated-histories
+        git push fork_repo HEAD:feature/auto-sync-with-github-action
