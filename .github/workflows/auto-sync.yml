@@ -21,6 +21,7 @@ jobs:
 
     - name: Fetch from origin repository
       run: |
+        git remote add origin https://daview-next:${{ secrets.FORK_GITHUB_TOKEN }}@github.com/meetup-fe-next/daview-ui.git
         git fetch origin
         git checkout origin/feature/auto-sync-with-github-action
 
@@ -28,4 +29,7 @@ jobs:
       run: |
         git switch feature/auto-sync-with-github-action --detach
         git merge origin/feature/auto-sync-with-github-action --allow-unrelated-histories
-        git push https://${{ secrets.FORK_GITHUB_TOKEN }}@github.com/daview-next/daview-ui.git fork_repo/feature/auto-sync-with-github-action
+    
+    - name: Push branch
+      run: |
+        git push -f fork_repo HEAD:feature/auto-sync-with-github-action
