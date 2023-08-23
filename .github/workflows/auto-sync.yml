@@ -28,4 +28,4 @@ jobs:
       run: |
         git switch feature/auto-sync-with-github-action --detach
         git merge origin/feature/auto-sync-with-github-action --allow-unrelated-histories
-        git push -f fork_repo HEAD:feature/auto-sync-with-github-action
+        git push https://${{ secrets.FORK_GITHUB_TOKEN }}@github.com/daview-next/daview-ui.git feature/auto-sync-with-github-action
