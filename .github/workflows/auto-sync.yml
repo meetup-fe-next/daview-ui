@@ -13,7 +13,7 @@ jobs:
     
     steps:
     - name: Check out repository A
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         repository: meetup-fe-next/daview-ui  # 레포지토리 A의 경로
         ref: ${{ github.event.ref }}
@@ -23,7 +23,7 @@ jobs:
       with:
         repository: daview-next/daview-ui  # 레포지토리 B의 경로
         github_token: ${{ secrets.FORK_GITHUB_TOKEN }}  # 레포지토리 B에 접근할 토큰
-        branch: feature/auto-sync-with-github-action
+        branch: ${{ github.head_ref }}
 
 
 
