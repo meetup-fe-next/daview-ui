@@ -18,8 +18,6 @@ jobs:
       run: |
         git remote add fork_repo https://daview-next:${{ secrets.FORK_GITHUB_TOKEN }}@github.com/daview-next/daview-ui.git
         git fetch fork_repo
-        git config user.name 'jun094'
-        git config user.email 'jun094@naver.com'
 
     - name: Fetch from origin repository
       run: |
@@ -30,4 +28,4 @@ jobs:
       run: |
         git switch feature/auto-sync-with-github-action --detach
         git merge origin/feature/auto-sync-with-github-action --allow-unrelated-histories
-        git push fork_repo HEAD:feature/auto-sync-with-github-action
+        git push -f fork_repo HEAD:feature/auto-sync-with-github-action
