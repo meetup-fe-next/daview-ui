@@ -38,7 +38,7 @@ const CreatorsList = ({ creators }: CreatorsProps) => {
         )}
       </div>
 
-      {isBottomSheetOpen && <BottomSheet isOpen={isBottomSheetOpen} />}
+      {/* {isBottomSheetOpen && <BottomSheet isOpen={isBottomSheetOpen} />} */}
 
       {creators?.items?.map((creator) => (
         <CreatorCard key={creator?.name} creator={creator}></CreatorCard>
