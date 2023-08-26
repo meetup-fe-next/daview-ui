@@ -2,7 +2,7 @@
 import CreatorCard from '@/components/CreatorCard';
 import Headline from '@/components/Typography/Headline';
 import Subtitle from '@/components/Typography/Subtitle';
-import BottomSheet from '@/components/BottomSheet';
+// import BottomSheet from '@/components/BottomSheet';
 import { useState } from 'react';
 
 import { type Creators } from '@/types/creators.type';
