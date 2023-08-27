@@ -11,7 +11,7 @@ function NavigationTab() {
   const pathname = usePathname();
 
   return (
-    <nav className="flex items-start gap-4 py-2">
+    <nav className="mt-2 flex items-start gap-4">
       {MENU.map((menu) => (
         <Link
           href={menu.path}
