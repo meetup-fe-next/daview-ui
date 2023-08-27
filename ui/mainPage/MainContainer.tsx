@@ -10,7 +10,9 @@ const MainContainer = () => {
   return (
     <>
       <section className={cn('mt-16')}>
-        <Headline type="h1">Find Lecture</Headline>
+        <Headline type="h1" color="secondary-900" font="Poppins" weights={500}>
+          Find Lecture
+        </Headline>
         <Subtitle type="sub1">궁금한 강의 정보를 검색해 보세요.</Subtitle>
         <MainInput />
       </section>
