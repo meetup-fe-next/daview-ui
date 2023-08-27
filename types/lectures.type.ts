@@ -9,4 +9,6 @@ export type Lecutre = {
   name: string;
   markdown: string;
   frontmatter: ContentsFrontmatter;
+  creator: string;
+  category: string;
 };
