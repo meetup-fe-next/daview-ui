@@ -14,6 +14,7 @@ const config: StorybookConfig = {
   webpackFinal: async (config) => {
     (config.resolve as any).alias = {
       ['@/components']: path.resolve(__dirname, '../components'),
+      ['@/hooks']: path.resolve(__dirname, '../hooks'),
     };
     return config;
   },
