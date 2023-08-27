@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import githubSdk from './githubSdk';
 
 const contributorSrcFile = path.join(process.cwd(), '.all-contributorsrc');
 
@@ -9,9 +10,10 @@ const contributorSrcFile = path.join(process.cwd(), '.all-contributorsrc');
  * @description 프로젝트의 가장 최상단에 위치한 .all-contributorsrc 파일 데이터 가져옴
  */
 
-export const getAllContributorsSrc = () => {
+export const getAllContributorsSrc = async () => {
   try {
-    const contributorInfo = fs.readFileSync(contributorSrcFile, 'utf8');
+    const data = await githubSdk.getContents('.all-contributorsrc');
+    const contributorInfo = decodeURIComponent(atob(data.content));
     return JSON.parse(contributorInfo);
   } catch {
     console.log('[profileSdk.ts] getAllContributorsSrc');
