@@ -1,6 +1,7 @@
 import PageLayout from '@/components/PageLayout';
 import Header from '@/components/Header';
 import Input from '@/components/Input';
+import NavigationTab from '@/components/NavigationTab';
 
 export default function Page() {
   return (
@@ -10,6 +11,7 @@ export default function Page() {
         <Input />
       </PageLayout.TopFixed>
       <PageLayout.Contents>
+        <NavigationTab />
         <h1>Creators Page</h1>
       </PageLayout.Contents>
     </>
