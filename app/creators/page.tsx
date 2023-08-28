@@ -3,13 +3,13 @@
 import PageLayout from '@/components/PageLayout';
 import Header from '@/components/Header';
 import Input from '@/components/Input';
-import Headline from '@/components/Typography/Headline';
-import Subtitle from '@/components/Typography/Subtitle';
 import CreatorsList from '@/ui/creatorsPage/CreatorsList';
 import { type Creators, type Creator } from '@/types/creators.type';
 
 import { searchCreatorsFromAlgolia } from '@/server/controllers/creators';
 import { useState } from 'react';
+
+import NavigationTab from '@/components/NavigationTab';
 
 export default function Page() {
   const [inputs, setInputs] = useState({
@@ -49,6 +49,8 @@ export default function Page() {
         />
       </PageLayout.TopFixed>
       <PageLayout.Contents>
+        <NavigationTab />
+        <h1>Creators Page</h1>
         <CreatorsList creators={creators}></CreatorsList>
       </PageLayout.Contents>
     </>

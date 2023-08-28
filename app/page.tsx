@@ -1,4 +1,5 @@
 import Header from '@/components/Header';
+import NavigationTab from '@/components/NavigationTab';
 import PageLayout from '@/components/PageLayout';
 import MainContainer from '@/ui/mainPage/MainContainer';
 
