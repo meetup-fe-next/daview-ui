@@ -2,23 +2,36 @@
 import CreatorCard from '@/components/CreatorCard';
 import Headline from '@/components/Typography/Headline';
 import Subtitle from '@/components/Typography/Subtitle';
-// import BottomSheet from '@/components/BottomSheet';
-import { useState } from 'react';
+import BottomSheet from '@/components/BottomSheet';
+import { use, useState } from 'react';
 
 import { type Creators } from '@/types/creators.type';
+import { type Lectures, type Lecutre } from '@/types/lectures.type';
+import { searchLecturesFromAlgolia } from '@/server/controllers/lectures';
 
 export type CreatorsProps = {
   creators: Creators | undefined;
 };
 
+async function fetchLectures(search: string) {
+  const res = await searchLecturesFromAlgolia(search);
+  return res;
+}
+
 const CreatorsList = ({ creators }: CreatorsProps) => {
   const [isBottomSheetOpen, setBottomSheetOpen] = useState(false);
-  const toggleBottomSheet = () => {
+  const [items, setItems] = useState<Lecutre[]>([]);
+  const [total, setTotal] = useState<number>(0);
+
+  const toggleBottomSheet = async (name: string) => {
+    const { items: fetchedItems, total: fetchedTotal } = await fetchLectures(name);
+    setItems(fetchedItems);
+    setTotal(fetchedTotal);
     setBottomSheetOpen((prevState) => !prevState);
   };
 
   return (
-    <section className="pt-2 " onClick={toggleBottomSheet}>
+    <section className="relative pt-2">
       <div>
         {creators?.items && creators?.items?.length > 0 ? (
           <Subtitle type="sub3" color="grey-800" className=" mb-2">
@@ -29,14 +42,17 @@ const CreatorsList = ({ creators }: CreatorsProps) => {
         )}
       </div>
 
-      {/* {isBottomSheetOpen && <BottomSheet isOpen={isBottomSheetOpen} />} */}
+      {isBottomSheetOpen && (
+        <BottomSheet isOpen={isBottomSheetOpen} items={items} total={total} onClose={() => setBottomSheetOpen(false)} />
+      )}
 
       {creators?.items?.map((creator) => (
-        <CreatorCard key={creator?.name} creator={creator}></CreatorCard>
+        <CreatorCard
+          key={creator?.name}
+          creator={creator}
+          onClick={() => toggleBottomSheet(creator?.name)}
+        ></CreatorCard>
       ))}
-
-      {/* <CreatorCard></CreatorCard> */}
-      {/* {isBottomSheetOpen && <BottomSheet isOpen={isBottomSheetOpen} />} */}
     </section>
   );
 };

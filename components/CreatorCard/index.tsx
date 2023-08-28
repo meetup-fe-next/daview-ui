@@ -4,13 +4,15 @@ import { type Creator } from '@/types/creators.type';
 
 export type CreatorProps = {
   creator: Creator | undefined;
+  onClick?: () => void;
 };
 
-const CreatorCard = ({ creator }: CreatorProps) => {
+const CreatorCard = ({ creator, onClick }: CreatorProps) => {
   return (
     <div
       // key={creator?.name}
       className=" mb-2 flex flex-col rounded-2xl border-[1px] border-secondary-300 bg-secondary-100 p-6"
+      onClick={onClick}
     >
       <Headline type="h3" color="secondary-900">
         {creator?.name}
