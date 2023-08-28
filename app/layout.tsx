@@ -1,6 +1,4 @@
 import PageLayout from '@/components/PageLayout';
-import { Poppins } from 'next/font/google';
-
 import './globals.css';
 
 export const metadata = {
@@ -8,17 +6,12 @@ export const metadata = {
   description: 'CHIC COLLECTION OF RESOURCES',
 };
 
-const poppins = Poppins({
-  weight: ['500','700'],
-  style: ['normal'],  
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-poppins',
-});
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ko" className={poppins.className}>
+    <html lang="ko" className="font-pretendard">
+      {/**
+       * TODO: 전체 default font, pretendard 안 먹는 이슈 해결하기
+       */}
       <body>
         {/**
          * NOTE: PageLayout 컴포넌트를 layout에 감싸주어 모든 페이지 컴포넌트에 적용될 수 있도록 해주었습니다.
