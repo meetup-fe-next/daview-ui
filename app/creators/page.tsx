@@ -50,7 +50,6 @@ export default function Page() {
       </PageLayout.TopFixed>
       <PageLayout.Contents>
         <NavigationTab />
-        <h1>Creators Page</h1>
         <CreatorsList creators={creators}></CreatorsList>
       </PageLayout.Contents>
     </>

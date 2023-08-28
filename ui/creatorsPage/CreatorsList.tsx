@@ -19,15 +19,6 @@ const CreatorsList = ({ creators }: CreatorsProps) => {
 
   return (
     <section className="pt-2 " onClick={toggleBottomSheet}>
-      <div className=" flex py-[9px] ">
-        <Headline type="h4" color="secondary-500" className=" mr-[6px]">
-          강의
-        </Headline>
-        <Headline type="h4" color="grey-900" className=" mr-[6px]">
-          크리에이터
-        </Headline>
-      </div>
-
       <div>
         {creators?.items && creators?.items?.length > 0 ? (
           <Subtitle type="sub3" color="grey-800" className=" mb-2">
