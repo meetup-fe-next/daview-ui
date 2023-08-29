@@ -1,8 +1,10 @@
 'use client';
 
 import { useState, useRef, Fragment } from 'react';
-import { getAlgoliaResults, parseAlgoliaHitHighlight } from '@algolia/autocomplete-preset-algolia';
+
 import algoliasearch from 'algoliasearch/lite';
+import { createAutocomplete } from '@algolia/autocomplete-core';
+import { getAlgoliaResults, parseAlgoliaHitHighlight } from '@algolia/autocomplete-preset-algolia';
 
 import Input from '@/components/Input';
 import { Search as SearchIcon } from '@/components/Icons';
@@ -16,12 +18,18 @@ const searchClient = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_API_KEY);
 
 const InputContainer = () => {
   const { autocomplete, state } = useAutocomplete({
-    id: 'twitter-autocomplete',
-    defaultActiveItemId: 0,
+    id: 'autocomplete-input',
+    /** Use an Algolia index source. */
     getSources({ query }: any) {
       return [
         {
-          sourceId: 'accounts',
+          sourceId: 'Daview Contents',
+          getItemInputValue({ item }: any) {
+            return item.query;
+          },
+          getItemUrl({ item }: any) {
+            return item.url;
+          },
           getItems() {
             return getAlgoliaResults({
               searchClient,
@@ -30,7 +38,14 @@ const InputContainer = () => {
                   indexName: 'lectures',
                   query,
                   params: {
-                    hitsPerPage: 8,
+                    hitsPerPage: 4,
+                  },
+                },
+                {
+                  indexName: 'creators',
+                  query,
+                  params: {
+                    hitsPerPage: 4,
                   },
                 },
               ],
@@ -42,26 +57,45 @@ const InputContainer = () => {
   });
   const inputRef = useRef(null);
 
-  console.log(state);
-
   return (
-    <div {...autocomplete.getRootProps({})}>
-      <form
-        {...autocomplete.getFormProps({
-          inputElement: inputRef.current,
-        })}
-      >
-        <Input
+    <div className="aa-Autocomplete" {...autocomplete.getRootProps({})}>
+      <form className="aa-Form" {...autocomplete.getFormProps({ inputElement: inputRef.current })}>
+        <input
           ref={inputRef}
           {...autocomplete.getInputProps({
             inputElement: inputRef.current,
             autoFocus: true,
-            placeholder: '입력..',
+            placeholder: '강의명, 강의자로 검색',
           })}
         />
       </form>
+      <div className="aa-Panel" {...autocomplete.getPanelProps({})}>
+        {state.isOpen &&
+          state.collections.map((collection, index) => {
+            const { source, items = [] } = collection;
 
-      {/* <button type="submit">검색</button> */}
+            return (
+              <div key={`source-${index}`} className="aa-Source">
+                {items.length > 0 && (
+                  <ul {...autocomplete.getListProps()} className="aa-List">
+                    {items.map((item) => (
+                      <li
+                        className="aa-Item"
+                        key={item.objectID}
+                        {...autocomplete.getItemProps({
+                          item,
+                          source,
+                        })}
+                      >
+                        <AccountItem hit={item} />
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            );
+          })}
+      </div>
 
       <div {...autocomplete.getPanelProps({})} className="">
         {state.isOpen &&
@@ -89,8 +123,11 @@ const InputContainer = () => {
 };
 
 function AccountItem({ hit }: any) {
+  const handleClickItem = (e: any) => {
+    console.log('==>', e.currentTarget.dataset.item);
+  };
   return (
-    <div className="flex items-center gap-2 p-2">
+    <div data-item={hit} className="flex items-center gap-2 p-2" onClick={handleClickItem}>
       <span className="rounded-full bg-black p-2">
         <SearchIcon color="white" size="sm" />
       </span>

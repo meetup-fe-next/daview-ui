@@ -17,7 +17,8 @@ function useAutocomplete(props: any) {
       createAutocomplete({
         ...props,
         onStateChange(params: any) {
-          props.onStateChange?.(params);
+          // props.onStateChange?.(params);
+          // Synchronize the Autocomplete state with the React state.
           setState(params.state);
         },
       }),
