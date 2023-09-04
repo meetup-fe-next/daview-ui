@@ -1,22 +1,21 @@
 'use client';
 
-import { useState, useRef, Fragment } from 'react';
-
+import { useRef } from 'react';
+import { useRouter } from 'next/navigation';
 import algoliasearch from 'algoliasearch/lite';
-import { createAutocomplete } from '@algolia/autocomplete-core';
 import { getAlgoliaResults, parseAlgoliaHitHighlight } from '@algolia/autocomplete-preset-algolia';
 
 import Input from '@/components/Input';
+import Subtitle from '@/components/Typography/Subtitle';
 import { Search as SearchIcon } from '@/components/Icons';
-
 import useAutocomplete from '@/hooks/useAutomcomplete';
 
 import { ALGOLIA_APP_ID, ALGOLIA_API_KEY } from '@/constants';
-import Subtitle from '@/components/Typography/Subtitle';
 
 const searchClient = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_API_KEY);
 
 const InputContainer = () => {
+  const inputRef = useRef(null);
   const { autocomplete, state } = useAutocomplete({
     id: 'autocomplete-input',
     /** Use an Algolia index source. */
@@ -55,12 +54,11 @@ const InputContainer = () => {
       ];
     },
   });
-  const inputRef = useRef(null);
 
   return (
     <div className="aa-Autocomplete" {...autocomplete.getRootProps({})}>
       <form className="aa-Form" {...autocomplete.getFormProps({ inputElement: inputRef.current })}>
-        <input
+        <Input
           ref={inputRef}
           {...autocomplete.getInputProps({
             inputElement: inputRef.current,
@@ -123,11 +121,21 @@ const InputContainer = () => {
 };
 
 function AccountItem({ hit }: any) {
+  const router = useRouter();
+
+  const { name } = hit;
+
   const handleClickItem = (e: any) => {
-    console.log('==>', e.currentTarget.dataset.item);
+    const { search = '' } = e.currentTarget.dataset;
+
+    if (search) router.push(`/lectures?search=${search}`);
   };
   return (
-    <div data-item={hit} className="flex items-center gap-2 p-2" onClick={handleClickItem}>
+    <div
+      data-search={name}
+      className="flex cursor-pointer items-center gap-2 p-2 hover:bg-grey-100"
+      onClick={handleClickItem}
+    >
       <span className="rounded-full bg-black p-2">
         <SearchIcon color="white" size="sm" />
       </span>
