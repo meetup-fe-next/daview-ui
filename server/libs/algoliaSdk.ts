@@ -40,6 +40,7 @@ const getObjectsFromIndex = async (indexName: string, search: string): Promise<a
  */
 const saveObjectsToIndex = async (indexName: string, objects: any): Promise<any> => {
   const data = objects.map((item: any) => ({ action: 'addObject', body: item }));
+
   const res = await fetch(`${ALGOLIA_WRITE_HOST}/1/indexes/${indexName}/batch`, {
     // TODO: next fetch 옵션 어떻게 할지 정하기
     // next: { revalidate: REVALIDATE_GITHUB_DATA },
@@ -54,9 +55,29 @@ const saveObjectsToIndex = async (indexName: string, objects: any): Promise<any>
   return res.json();
 };
 
+/**
+ * [POST] Algolia Search API - setSettingsToIndex
+ *
+ * @description 특정 index의 setting을 변경
+ * @links https://www.algolia.com/doc/rest-api/search/#set-settings
+ */
+const setSettingsToIndex = async (indexName: string, settings: any): Promise<any> => {
+  const res = await fetch(`${ALGOLIA_WRITE_HOST}/1/indexes/${indexName}/settings`, {
+    method: 'PUT',
+    headers: {
+      ...ALGOLIA_HEADERS,
+      'X-Algolia-API-Key': ALGOLIA_ADMIN_API_KEY,
+    },
+    body: JSON.stringify(settings),
+  });
+
+  return res.json();
+};
+
 const algoliaSdk = {
   getObjectsFromIndex,
   saveObjectsToIndex,
+  setSettingsToIndex,
 };
 
 export default algoliaSdk;
