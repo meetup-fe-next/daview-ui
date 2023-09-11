@@ -39,8 +39,8 @@ const BottomSheet = ({ items: lectures, total, isOpen, onClose }: LectureswithBo
     <div className="top-100%  absolute  z-10 h-screen max-h-[desiredHeight] w-full overflow-y-auto ">
       <div
         ref={bottomSheetRef}
-        className={` w-full rounded-2xl border-t shadow-2xl transition-transform  duration-1000 ease-in-out ${
-          isOpen ? 'translate-y-0 ' : 'translate-y-full '
+        className={` w-full rounded-2xl border-t shadow-2xl transition-transform  duration-1000 ${
+          isOpen ? 'animate-[bottom-sheet-up_200ms_ease-in-out] ' : 'animate-[bottom-sheet-down_200ms_ease-in-out]'
         } `}
       >
         {lectures?.map((item: any) => (

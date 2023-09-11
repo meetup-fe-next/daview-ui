@@ -12,6 +12,16 @@ module.exports = {
   ],
   theme: {
     extend: {
+      keyframes: {
+        'bottom-sheet-up': {
+          '0%': { transform: 'translateY(500px)' },
+          '100%': { transform: 'translateY(0)' },
+        },
+        'bottom-sheet-down': {
+          '0%': { transform: 'translateY(0)' },
+          '100%': { transform: 'translateY(500px)' },
+        },
+      },
       letterSpacing: {
         tighter: '-0.5px',
       },
