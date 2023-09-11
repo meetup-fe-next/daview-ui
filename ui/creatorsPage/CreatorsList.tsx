@@ -22,12 +22,14 @@ const CreatorsList = ({ creators }: CreatorsProps) => {
   const [isBottomSheetOpen, setBottomSheetOpen] = useState(false);
   const [items, setItems] = useState<Lecutre[]>([]);
   const [total, setTotal] = useState<number>(0);
+  const [clickedCreator, setClickedCreator] = useState('');
 
   const toggleBottomSheet = async (name: string) => {
     const { items: fetchedItems, total: fetchedTotal } = await fetchLectures(name);
     setItems(fetchedItems);
     setTotal(fetchedTotal);
     setBottomSheetOpen((prevState) => !prevState);
+    setClickedCreator(name);
   };
 
   return (
@@ -43,7 +45,13 @@ const CreatorsList = ({ creators }: CreatorsProps) => {
       </div>
 
       {isBottomSheetOpen && (
-        <BottomSheet isOpen={isBottomSheetOpen} items={items} total={total} onClose={() => setBottomSheetOpen(false)} />
+        <BottomSheet
+          isOpen={isBottomSheetOpen}
+          items={items}
+          total={total}
+          onClose={() => setBottomSheetOpen(false)}
+          clickedCreator={clickedCreator}
+        />
       )}
 
       {creators?.items?.map((creator) => (

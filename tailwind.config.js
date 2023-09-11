@@ -12,6 +12,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      boxShadow: {
+        bottomsheet: '0px -8px 20px 0px rgba(0, 0, 0, 0.40)',
+      },
       keyframes: {
         'bottom-sheet-up': {
           '0%': { transform: 'translateY(500px)' },
