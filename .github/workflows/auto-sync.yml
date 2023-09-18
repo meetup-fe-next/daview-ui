@@ -1,0 +1,32 @@
+name: Sync Repository
+
+on:
+  push:
+    branches:
+      - develop  # 또는 동기화하려는 브랜치 이름
+
+permissions: write-all
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        ref: ${{ github.head_ref }}
+        fetch-depth: 0
+        token: ${{ secrets.FORK_GITHUB_TOKEN }}
+    - name: Commit files
+      run: |
+        git config --local user.email "daview.next@gmail.com"
+        git config --local user.name "daview-next"
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.FORK_GITHUB_TOKEN }}
+        repository: daview-next/daview-ui
+        force: true
+        branch: develop
+
+
+

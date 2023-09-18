@@ -6,6 +6,6 @@ import { getAllContributorsSrc } from '../libs/allContributorsSdk';
  * @return
  */
 export const getContributors = async () => {
-  const allContributorsSrc = getAllContributorsSrc();
+  const allContributorsSrc = await getAllContributorsSrc();
   return allContributorsSrc ? allContributorsSrc.contributors : [];
 };

@@ -10,4 +10,5 @@ export type Creator = {
   name: string;
   category: CategoryName;
   lectures: GithubContentEntry[];
+  platforms?: string[];
 };
