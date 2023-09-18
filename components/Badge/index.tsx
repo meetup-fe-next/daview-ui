@@ -9,7 +9,7 @@ type BadgeProps = {
 };
 
 const Badge = (props: BadgeProps) => {
-  const { children, color = 'primary', className, ...rest } = props;
+  const { children, color = 'gray', className, ...rest } = props;
 
   const COLOR_STYLE = {
     primary: {
@@ -34,7 +34,7 @@ const Badge = (props: BadgeProps) => {
     <>
       <span
         className={cn(
-          'box-border flex h-[24px] w-[54px] flex-row items-center justify-center gap-1 rounded-[40px] px-2 py-[3px] text-xs font-medium',
+          'box-border flex h-[24px] w-[54px] flex-row items-center justify-center gap-1 rounded-[40px] bg-opacity-60 px-2 py-[3px] text-xs font-medium',
           COLOR_STYLE[color].bg,
           COLOR_STYLE[color].text,
           className,

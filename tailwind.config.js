@@ -84,6 +84,9 @@ module.exports = {
         },
         white: '#ffffff',
         black: '#000000',
+        yellow: '#F9D34F',
+        green: '#9BE3D6',
+        pink: '#E29BE3',
       },
       opacity: {
         '87': '.87',
