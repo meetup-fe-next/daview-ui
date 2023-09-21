@@ -1,6 +1,4 @@
-import { LectureCardItem } from '@/components/LecturesCard';
-
-const lectureData: LectureCardItem[] = [
+const lectureData: any[] = [
   {
     uuid: 1,
     lecture: 'Next.js 개념정리 · 클론코딩',

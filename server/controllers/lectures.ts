@@ -14,7 +14,7 @@ export const getLecturesFromGithub = async (): Promise<Lectures> => {
   const { items: creators } = await getCreatorsFromGithub();
   const lectures: Lecutre[] = [];
 
-  for (const { lectures: githubLectures } of creators) {
+  for (const { lectures: githubLectures, name: creator, category } of creators) {
     for (const githubLecture of githubLectures) {
       const { name: lectureName, path: lecturePath } = githubLecture;
       const lectureContentsPath = `${lecturePath}/CONTENTS.md`;
@@ -28,6 +28,8 @@ export const getLecturesFromGithub = async (): Promise<Lectures> => {
       lectures.push({
         name: removeHyphensAndConvertToSpaces(lectureName),
         markdown,
+        creator,
+        category,
         frontmatter: {
           platforms,
           hashtags,
@@ -60,6 +62,7 @@ export const searchLecturesFromAlgolia = async (search: string): Promise<Lecture
 export const saveLecturesToAlgolia = async () => {
   try {
     const { items: lectures } = await getLecturesFromGithub();
+
     const res = await algoliaSdk.saveObjectsToIndex('lectures', lectures);
     return res;
   } catch (err) {

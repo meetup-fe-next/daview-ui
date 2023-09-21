@@ -29,6 +29,7 @@ module.exports = {
         tighter: '-0.5px',
       },
       fontFamily: {
+        poppins: ['Poppins','sans-serif'],
         pretendard: ['Pretendard', 'sans-serif'],
       },
       fontSize: {

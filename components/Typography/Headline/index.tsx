@@ -1,4 +1,13 @@
 import cn from 'classnames';
+import { Poppins } from 'next/font/google';
+
+const poppins = Poppins({
+  weight: ['500', '700'],
+  style: ['normal'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-poppins',
+});
 
 type HeadlineType = 'h1' | 'h2' | 'h3' | 'h4' | 'h5';
 
@@ -7,6 +16,8 @@ export type HeadlineProps = {
   children: React.ReactNode;
   type: HeadlineType;
   color?: keyof typeof TYPOGRAPHY_COLORS;
+  font?: 'Poppins' | 'Pretendard';
+  weights?: 400 | 500 | 600 | 700;
 };
 
 const fontSizes = {
@@ -15,23 +26,25 @@ const fontSizes = {
   h3: 'text-xl',
   h4: 'text-lg',
   h5: 'text-base',
-};
-
-const fontWeights = {
-  h1: 'font-bold', //우진님 확인으로 변경
-  h2: 'font-bold',
-  h3: 'font-bold',
-  h4: 'font-bold',
-  h5: 'font-bold',
 } as const;
 
-const Headline = ({ children, type, className, color, ...rest }: HeadlineProps) => {
+const fontWeights = {
+  400: 'font-normal',
+  500: 'font-medium',
+  600: 'font-semibold',
+  700: 'font-bold',
+} as const;
+
+const Headline = ({ children, type, className, color, font, weights = 700, ...rest }: HeadlineProps) => {
   const Component = type as keyof JSX.IntrinsicElements;
   const colorClass = color ? `text-${color}` : 'secondary-900';
-  const headlineStyle = `font-pretendard ${fontWeights[type]} ${fontSizes[type]} leading-150 tracking-tighter ${colorClass}`;
+
+  const fontClass = font === 'Poppins' ? poppins.className : 'font-pretendard';
+
+  const headlineStyle = `${fontClass} ${fontWeights[weights]} ${fontSizes[type]} leading-150 tracking-tighter ${colorClass}`;
 
   return (
-    <Component className= {cn(headlineStyle, className)} {...rest}>
+    <Component className={cn(headlineStyle, className)} {...rest}>
       {children}
     </Component>
   );

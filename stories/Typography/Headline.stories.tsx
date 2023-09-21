@@ -34,7 +34,15 @@ const meta: Meta<typeof HeadlineComponent> = {
       'grey-300',
     ],
       control: { type: 'select' }
-    },    
+    },   
+    font: {
+      options: ['Pretendard', 'Poppins', ],
+      control: { type: 'radio' },
+    }, 
+    weights: {
+      options: [ 400, 500, 600, 700, ],
+      control: { type: 'radio' },
+    },     
   },
 };
 
@@ -46,7 +54,9 @@ export const Headline: Story = {
   args: {
     type: 'h1',
     color: 'secondary-900',
-    children: 'H1/Pretendard/Bold/48px',
+    children: 'Find Lecture',
+    font: 'Poppins',
+    weights: 500,
   },
   render: (args) => <HeadlineComponent {...args} />,
 };
