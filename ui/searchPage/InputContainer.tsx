@@ -55,9 +55,11 @@ const InputContainer = () => {
     },
   });
 
+  const formProps = autocomplete.getFormProps({ inputElement: inputRef.current }) as React.HTMLProps<HTMLFormElement>;
+
   return (
-    <div className="aa-Autocomplete" {...autocomplete.getRootProps({})}>
-      <form className="aa-Form" {...autocomplete.getFormProps({ inputElement: inputRef.current })}>
+    <div id="aa-Autocomplete" {...autocomplete.getRootProps({})}>
+      <form id="aa-Form" {...formProps}>
         <Input
           ref={inputRef}
           {...autocomplete.getInputProps({
