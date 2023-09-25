@@ -10,15 +10,6 @@ import NavigationTab from '@/components/NavigationTab';
 import { useSearchParams } from 'next/navigation';
 
 export default function Page() {
-  const searchCreators = async (search: string) => {
-    const res = await searchCreatorsFromAlgolia(search);
-
-    return res;
-  };
-
-  const searchParams = useSearchParams();
-  const search = searchParams.get('search') ?? '';
-  const { items } = use(searchCreators(search));
   const [inputs, setInputs] = useState({
     creators: '',
     lectures: '',
@@ -39,7 +30,7 @@ export default function Page() {
       </PageLayout.TopFixed>
       <PageLayout.Contents>
         <NavigationTab />
-        <CreatorsList creators={items}></CreatorsList>
+        <CreatorsList></CreatorsList>
       </PageLayout.Contents>
     </>
   );
