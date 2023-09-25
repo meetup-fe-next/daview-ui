@@ -2,7 +2,7 @@
 import CreatorCard from '@/components/CreatorCard';
 import Subtitle from '@/components/Typography/Subtitle';
 import BottomSheet from '@/components/BottomSheet';
-import { use, useState } from 'react';
+import { use, useEffect, useState } from 'react';
 
 import { Creator } from '@/types/creators.type';
 import { type Lecutre } from '@/types/lectures.type';
@@ -28,7 +28,18 @@ const CreatorsList = () => {
   const searchParams = useSearchParams();
   const search = searchParams.get('search') ?? '';
 
-  const { items: itemsByCreators, total: totalByCreators } = use(searchCreators(search));
+  const [itemsByCreators, setItemsByCreators] = useState<Creator[]>([]);
+  const [totalByCreators, setTotalByCreators] = useState<number>(0);
+
+  useEffect(() => {
+    const fetchCreators = async () => {
+      const result = await searchCreators(search);
+      setItemsByCreators(result.items);
+      setTotalByCreators(result.total);
+    };
+
+    fetchCreators();
+  }, [search]);
 
   const [isBottomSheetOpen, setBottomSheetOpen] = useState(false);
   const [items, setItems] = useState<Lecutre[]>([]);
