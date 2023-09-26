@@ -7,6 +7,7 @@ import Subtitle from '@/components/Typography/Subtitle';
 
 import { searchLecturesFromAlgolia } from '@/server/controllers/lectures';
 import ScrollToTop from '@/components/ScrollToTop';
+import NoResultContainer from '../noResult/NoResultContainer';
 
 async function fetchLectures(search: string) {
   const res = await searchLecturesFromAlgolia(search);
@@ -29,13 +30,17 @@ export default function LecturesContainer() {
   return (
     <>
       <Subtitle type="sub3" className="mb-2 mt-5">{`강의 검색 결과 ${total}건`}</Subtitle>
-      <ul>
-        {items.map((item: any) => (
-          <li key={item.objectID}>
-            <LecturesCard key={item.objectID} item={item} onClick={handleCardClick} />
-          </li>
-        ))}
-      </ul>
+      {items.length > 0 ? (
+        <ul>
+          {items.map((item: any) => (
+            <li key={item.objectID}>
+              <LecturesCard key={item.objectID} item={item} onClick={handleCardClick} />
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <NoResultContainer />
+      )}
       <ScrollToTop />
     </>
   );

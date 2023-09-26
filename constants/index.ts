@@ -18,5 +18,5 @@ export const ALGOLIA_WRITE_HOST = `https://${ALGOLIA_APP_ID}.algolia.net` as str
 /**
  * ETC
  */
-export const CONTENS_ENROLLMENT_URL = 'https://github.com/meetup-fe-next/daview-contents/issues/new/choose'; // 강의 등록 페이지 링크
+export const CONTENTS_ENROLLMENT_URL = 'https://github.com/meetup-fe-next/daview-contents/issues/new/choose'; // 강의 등록 페이지 링크
 export const REVALIDATE_GITHUB_DATA = 60 * 3; // 3분
