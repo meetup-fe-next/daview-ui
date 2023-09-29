@@ -1,7 +1,7 @@
 import { getCreatorsFromGithub } from './creators';
 import githubSdk from '../libs/githubSdk';
 import algoliaSdk from '../libs/algoliaSdk';
-import { downloadTextFile, splitFrontmatterAndMarkdown, removeHyphensAndConvertToSpaces } from '../utils/common';
+import { downloadTextFile, splitFrontmatterAndMarkdown, replaceDashWithSpace } from '../utils/common';
 
 import { type Creators } from '@/types/creators.type';
 import { type Lectures, type Lecutre } from '@/types/lectures.type';
@@ -26,7 +26,7 @@ export const getLecturesFromGithub = async (): Promise<Lectures> => {
       const { platforms, hashtags, languages, summary, link } = frontmatter as ContentsFrontmatter;
 
       lectures.push({
-        name: removeHyphensAndConvertToSpaces(lectureName),
+        name: replaceDashWithSpace(lectureName),
         markdown,
         creator,
         category,
