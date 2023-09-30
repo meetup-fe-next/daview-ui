@@ -1,8 +1,7 @@
-import { replaceDashWithSpace } from '@/utils';
-
 import { getCategoriesFromGithub } from './categories';
 import githubSdk from '../libs/githubSdk';
 import algoliaSdk from '../libs/algoliaSdk';
+import { replaceDashWithSpace } from '../utils/common';
 
 import { type GithubContentEntry } from '@/types/github.type';
 import { type CategoryName, type Categories } from '@/types/categories.type';
@@ -26,14 +25,17 @@ export const getCreatorsFromGithub = async (): Promise<Creators> => {
        * @example lecturesPath = 'contents/frontend/드림코딩-엘리' -> category = 'frontend'
        */
       const category: CategoryName = lecturesPath.split('/')[1];
-      const lectures: GithubContentEntry[] = await githubSdk.getContents(lecturesPath);
-      const creator: Creator = {
-        name: replaceDashWithSpace(creatorName),
-        lectures,
-        category,
-      };
 
-      creators.push(creator);
+      if (creatorName !== '.gitkeep') {
+        const lectures: GithubContentEntry[] = await githubSdk.getContents(lecturesPath);
+        const creator: Creator = {
+          name: replaceDashWithSpace(creatorName),          
+          category: replaceDashWithSpace(category),
+          lectures,
+        };
+
+        creators.push(creator);
+      }
     }
   }
 
@@ -93,7 +95,7 @@ export const saveCreatorsToAlgolia = async () => {
 
     const res = await algoliaSdk.saveObjectsToIndex('creators', creators);
 
-    /** algolia "lecture" index의 검색 속성을 "제한 없음"으로 초기화  */
+    /** algolia "lecture" index의 검색 속성을 "제한 없음"으로 재설정  */
     await algoliaSdk.setSettingsToIndex('lectures', {
       searchableAttributes: null,
     });
