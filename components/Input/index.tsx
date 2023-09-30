@@ -53,13 +53,12 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
         {isDefaultType && (
           <span className={INPUT_STYLE.LEFT_ICON}>
-            <Search className={cn(disabled && 'opacity-[0.32]')} color="" strokeColor="secondary-900" size="md" />
+            <Search className={cn(disabled && 'opacity-[0.32]')} color="secondary-900" />
           </span>
         )}
         {isActiveType && (
           <button className={INPUT_STYLE.LEFT_ICON}>
             <ArrowLeft
-              color="black"
               size="md"
               onMouseDown={() => {
                 onClickPreviousButton && onClickPreviousButton();
@@ -116,7 +115,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
                 onClickSearchButton && onClickSearchButton();
               }}
             >
-              <Search size="md" color="" strokeColor={!isFocus ? 'secondary-900' : 'primary-500'} />
+              <Search size="md" color={!isFocus ? 'secondary-900' : 'primary-500'} />
             </button>
           </>
         )}
