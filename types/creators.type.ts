@@ -11,4 +11,5 @@ export type Creator = {
   category: CategoryName;
   lectures: GithubContentEntry[];
   platforms?: string[];
+  objectID: number;
 };
