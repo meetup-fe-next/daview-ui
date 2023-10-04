@@ -1,5 +1,5 @@
 import PageLayout from '@/components/PageLayout';
-import QueryProvider from '@/utils/tanstack-query/queryProvider';
+import QueryProvider from '@/utils/tanstack-query/QueryProvider';
 
 import './globals.css';
 
