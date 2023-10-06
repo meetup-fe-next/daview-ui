@@ -39,7 +39,7 @@ const BottomSheet = ({ items: lectures, total, isOpen, onClose, clickedCreator }
   }, []);
 
   return (
-    <div className=" top-100% absolute w-full rounded-2xl bg-secondary-200 shadow-bottomsheet ">
+    <div className=" top-100% absolute h-screen w-full rounded-2xl bg-secondary-200 shadow-bottomsheet ">
       <div
         ref={bottomSheetRef}
         className={`${
