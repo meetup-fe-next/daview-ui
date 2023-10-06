@@ -56,13 +56,13 @@ export const splitFrontmatterAndMarkdown = (mdContent: string) => {
 };
 
 /**
- * removeHyphensAndConvertToSpaces
+ * replaceDashWithSpace
  *
  * @description '-'를 ' '로 변환한다.
  * @example
- * - removeHyphensAndConvertToSpaces('토비의-스프링-부트-이해와-원리')
+ * - replaceDashWithSpace('토비의-스프링-부트-이해와-원리')
  * - '토비의 스프링 부트 이해와 원리'
  */
-export const removeHyphensAndConvertToSpaces = (str: string) => {
+export const replaceDashWithSpace = (str: string) => {
   return str.replace(/-/g, ' ');
 };
