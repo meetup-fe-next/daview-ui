@@ -7,11 +7,13 @@ import CreatorsList from '@/ui/creatorsPage/CreatorsList';
 import { searchCreatorsFromAlgolia } from '@/server/controllers/creators';
 import { use, useState } from 'react';
 import NavigationTab from '@/components/NavigationTab';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 export default function Page() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [inputs, setInputs] = useState({
-    creators: '',
+    creators: searchParams.get('search') ?? '',
     lectures: '',
   });
 
@@ -22,11 +24,15 @@ export default function Page() {
     });
   };
 
+  const handleSearchButton = () => {
+    router.push(`/creators?search=${inputs.creators}`);
+  };
+
   return (
     <>
       <PageLayout.TopFixed>
         <Header />
-        <Input id="creators" value={inputs.creators} onChange={handleChange} placeholder="크리에이터 검색" />
+        <Input id="creators" value={inputs.creators} onChange={handleChange} placeholder="크리에이터 검색" onClickSearchButton={handleSearchButton} />
       </PageLayout.TopFixed>
       <PageLayout.Contents>
         <NavigationTab />
