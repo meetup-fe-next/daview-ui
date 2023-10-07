@@ -1,34 +1,57 @@
 'use client';
 
+import { useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 
 import Subtitle from '@/components/Typography/Subtitle';
 import { Search } from '@/components/Icons';
 
-export type Result = {
+import { useGetLectures } from '@/hooks/queries/useLecture';
+import { useGetCreators } from '@/hooks/queries/useCreator';
+
+import SearchItemsContainer from '../SearchResultsContainer';
+
+type Item = {
   name: string;
   id: number | string;
 };
 
 type SearchResultsProps = {
-  search: string;
-  results: Result[];
-  setValue: React.Dispatch<React.SetStateAction<string>>;
+  value: string;
 };
 
-const SearchResults = ({ search, results, setValue }: SearchResultsProps) => {
+const SearchResults = ({ value }: SearchResultsProps) => {
   const router = useRouter();
 
+  /** sever state */
+  const { data: lecturesData } = useGetLectures(value, {
+    enabled: !!value,
+  });
+  const { data: creatorsData } = useGetCreators(value, {
+    enabled: !!value,
+  });
+
+  /** local state */
+  const lectureItems = useMemo(
+    () => (lecturesData?.items ? lecturesData.items.map(({ name, objectID }) => ({ name, id: objectID })) : []),
+    [lecturesData],
+  ) as Item[];
+  const creatorItems = useMemo(
+    () => (creatorsData?.items ? creatorsData.items.map(({ name, objectID }) => ({ name, id: objectID })) : []),
+    [creatorsData],
+  ) as Item[];
+
+  const toalItems = [...lectureItems, ...creatorItems];
+
+  /** handler */
   const handleClick = (e: React.MouseEvent<HTMLLIElement>) => {
     const searchValue = e.currentTarget.dataset.id || '';
-
-    setValue(searchValue);
     router.push(`/lectures?search=${searchValue}`);
   };
 
   return (
-    <>
-      {results.map(({ name, id }) => (
+    <SearchItemsContainer>
+      {toalItems.map(({ name, id }) => (
         <li
           data-id={name}
           key={id}
@@ -43,7 +66,7 @@ const SearchResults = ({ search, results, setValue }: SearchResultsProps) => {
           </Subtitle>
         </li>
       ))}
-    </>
+    </SearchItemsContainer>
   );
 };
 
