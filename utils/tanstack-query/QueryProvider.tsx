@@ -16,8 +16,10 @@ function QueryProvider({ children }: QueryProviderProps) {
          * react-query 전역 옵션 설정
          */
         queries: {
-          // staleTime: 1000 * 60 * 1, // 1분
+          staleTime: 1000 * 60 * 1, // 1분
+          // cacheTime: 0,
           retry: 1,
+          suspense: true,
         },
       },
     }),
