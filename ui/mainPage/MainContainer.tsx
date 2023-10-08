@@ -1,4 +1,7 @@
+'use client';
+
 import cn from 'classnames';
+import { useRouter } from 'next/navigation';
 import Subtitle from '@/components/Typography/Subtitle';
 import Headline from '@/components/Typography/Headline';
 import Button from '@/components/Button';
@@ -7,6 +10,8 @@ import ContributorsProfile from '@/ui/mainPage/ContributorsProfile';
 import MainInput from './MainInput';
 
 const MainContainer = () => {
+  const router = useRouter();
+
   return (
     <>
       <section className={cn('mt-16')}>
@@ -17,7 +22,13 @@ const MainContainer = () => {
         <MainInput />
       </section>
       <SearchSuggestion />
-      <Button size="lg" className={cn('mt-8 w-full')}>
+      <Button
+        size="lg"
+        className={cn('mt-8 w-full')}
+        onClick={() => {
+          router.push(`/lectures`);
+        }}
+      >
         전체 강의 보기
       </Button>
       <ContributorsProfile />
