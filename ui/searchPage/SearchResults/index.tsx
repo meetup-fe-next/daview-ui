@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 
 import Subtitle from '@/components/Typography/Subtitle';
@@ -62,7 +62,12 @@ const SearchResults = ({ value }: SearchResultsProps) => {
             <Search color="white" />
           </span>
           <Subtitle type="sub2" color="secondary-900">
-            {name}
+            {name.split(value).map((text, subIndex) => (
+              <React.Fragment key={subIndex}>
+                {subIndex > 0 && <mark className="text-primary-500 bg-transparent">{value}</mark>}
+                {text}
+              </React.Fragment>
+            ))}
           </Subtitle>
         </li>
       ))}
