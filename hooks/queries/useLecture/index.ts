@@ -4,6 +4,7 @@ import { searchLecturesFromAlgolia } from '@/server/controllers/lectures';
 
 import { KEYS as lecturesKeys } from './index.constants';
 
+// 더미 API
 import { getLectures } from './api';
 
 import type { Lectures } from '@/types/lectures.type';
@@ -17,7 +18,7 @@ import type { Lectures } from '@/types/lectures.type';
 const useGetLectures = (search: string, options?: UseQueryOptions<Lectures, Error>): UseQueryResult<Lectures, Error> =>
   useQuery({
     queryKey: lecturesKeys.filteredLectures({ search }),
-    queryFn: () => getLectures(search),
+    queryFn: () => searchLecturesFromAlgolia(search),
     ...options,
   });
 
