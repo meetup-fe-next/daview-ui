@@ -1,8 +1,8 @@
 'use client';
 
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import cn from 'classnames';
-import { useMemo, useState } from 'react';
+
 import { ArrowLeft, CloseCircle, Search } from '@/components/Icons';
 import { INPUT_STYLE } from './index.constant';
 
