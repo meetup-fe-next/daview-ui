@@ -3,7 +3,7 @@ name: Sync Repository
 on:
   push:
     branches:
-      - feature/fix-search-page  # 동기화하려는 브랜치 이름
+      - '*'  # 동기화하려는 브랜치 이름
 
 permissions: write-all
 
