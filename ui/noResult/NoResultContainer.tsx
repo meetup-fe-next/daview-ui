@@ -8,15 +8,15 @@ const NoResultContainer = () => {
   return (
     <>
       <section
-        className={cn(
-          'mt-4 flex h-[calc(100vh-192px)] flex-col items-center justify-center justify-self-stretch rounded-lg border border-secondary-300 bg-secondary-100',
-        )}
+        className={
+          'mt-4 flex h-[calc(100vh-192px)] flex-col items-center justify-center justify-self-stretch rounded-lg border border-secondary-300 bg-secondary-100'
+        }
       >
-        <Headline type="h4" className={cn('mb-2')}>
+        <Headline type="h4" className={'mb-2'}>
           찾고 있는 강의가 없나요?
         </Headline>
         <Link target="_blank" href={CONTENTS_ENROLLMENT_URL}>
-          <Button size="lg" color="dark" className={cn('mb-8 w-[191px]')}>
+          <Button size="lg" color="dark" className={'mb-8 w-[191px]'}>
             강의 등록하기
           </Button>
         </Link>
