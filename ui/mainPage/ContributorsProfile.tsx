@@ -1,10 +1,16 @@
 import Image from 'next/image';
-import { use } from 'react';
+import { useEffect, useState } from 'react';
 import { getContributors } from '@/server/controllers/contributors';
 import { ContributorsData } from '@/types/contributors.type';
 
 const ContributorsProfile = () => {
-  const contributors: ContributorsData[] = use(getContributors());
+  const [contributors, setContributors] = useState<ContributorsData[]>([]);
+  useEffect(() => {
+    (async () => {
+      const data = await getContributors();
+      setContributors(data);
+    })();
+  }, []);
 
   if (contributors.length === 0) {
     return <></>;
