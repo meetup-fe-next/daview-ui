@@ -25,7 +25,7 @@ const fontWeights = {
 } as const;
 
 const Subtitle = ({ children, type, tag: Component = 'div', className, color, ...rest }: SubtitleProps) => {
-  const colorClass = color ? `text-${color}` : 'secondary-900';
+  const colorClass = color ? `text-${color}` : 'text-secondary-900';
   const subtitleStyle = `font-pretendard ${fontWeights[type]} ${fontSizes[type]} leading-150 tracking-tighter ${colorClass}`;
 
   return (

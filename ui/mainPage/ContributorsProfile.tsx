@@ -21,8 +21,19 @@ const ContributorsProfile = () => {
         alt="기여해주신 분들"
       />
       <section className="flex gap-x-3 [&>img]:rounded-[60px] [&>img]:border [&>img]:border-secondary-900">
-        {contributors.map(({ login, avatar_url }) => {
-          return <Image key={login} alt="profile" src={avatar_url} width="40" height="40" />;
+        {contributors.map(({ login, avatar_url, profile }) => {
+          return (
+            <Image
+              key={login}
+              alt="profile"
+              src={avatar_url}
+              width="40"
+              height="40"
+              onClick={() => {
+                location.href = profile;
+              }}
+            />
+          );
         })}
       </section>
     </div>

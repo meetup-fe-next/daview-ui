@@ -37,7 +37,7 @@ const fontWeights = {
 
 const Headline = ({ children, type, className, color, font, weights = 700, ...rest }: HeadlineProps) => {
   const Component = type as keyof JSX.IntrinsicElements;
-  const colorClass = color ? `text-${color}` : 'secondary-900';
+  const colorClass = color ? `text-${color}` : 'text-secondary-900';
 
   const fontClass = font === 'Poppins' ? poppins.className : 'font-pretendard';
 
