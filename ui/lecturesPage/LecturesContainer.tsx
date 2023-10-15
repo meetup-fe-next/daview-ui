@@ -7,7 +7,7 @@ import Subtitle from '@/components/Typography/Subtitle';
 
 import { searchLecturesFromAlgolia } from '@/server/controllers/lectures';
 import ScrollToTop from '@/components/ScrollToTop';
-import NoResultContainer from '../noResult/NoResultContainer';
+import NoResultContainer from '@/ui/common/NoResultContainer';
 
 async function fetchLectures(search: string) {
   const res = await searchLecturesFromAlgolia(search);

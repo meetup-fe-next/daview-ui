@@ -9,7 +9,7 @@ import { type Lecutre } from '@/types/lectures.type';
 import { searchLecturesFromAlgolia } from '@/server/controllers/lectures';
 import { useSearchParams } from 'next/navigation';
 import { searchCreatorsFromAlgolia } from '@/server/controllers/creators';
-import NoResultContainer from '../noResult/NoResultContainer';
+import NoResultContainer from '@/ui/common/NoResultContainer';
 
 export type CreatorsProps = {
   creators: Creator[];
