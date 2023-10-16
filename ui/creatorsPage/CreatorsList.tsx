@@ -9,6 +9,7 @@ import { type Lecutre } from '@/types/lectures.type';
 import { searchLecturesFromAlgolia } from '@/server/controllers/lectures';
 import { useSearchParams } from 'next/navigation';
 import { searchCreatorsFromAlgolia } from '@/server/controllers/creators';
+import NoResultContainer from '@/ui/common/NoResultContainer';
 
 export type CreatorsProps = {
   creators: Creator[];
@@ -72,7 +73,7 @@ const CreatorsList = () => {
               크리에이터 검색 결과 {totalByCreators} 건
             </Subtitle>
           ) : (
-            <></>
+            <NoResultContainer />
           )}
         </div>
 
