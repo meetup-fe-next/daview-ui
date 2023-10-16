@@ -26,31 +26,18 @@ const ICON_SIZE = {
 } as const;
 
 const ICON_COLOR: { [key: string]: string } = {
-  black: 'fill-black',
-  white: 'fill-white',
-  'primary-300': 'fill-primary-300',
-  'grey-700': 'fill-grey-700',
+  black: 'text-black',
+  white: 'text-white',
+  'primary-300': 'text-primary-300',
+  'primary-500': 'text-primary-500',
+  'secondary-900': 'text-secondary-900',
+  'grey-700': 'text-grey-700',
 } as const;
 
-const STROKE_COLOR: { [key: string]: string } = {
-  black: 'stroke-black',
-  'primary-500': 'stroke-primary-500',
-  'secondary-900': 'stroke-secondary-900',
-} as const;
-
-const IconBase = ({
-  size = 'md',
-  width,
-  height,
-  color = 'black',
-  strokeColor = '',
-  className,
-  children,
-  ...rest
-}: IconProps) => {
+const IconBase = ({ size = 'md', width, height, color = 'black', className, children, ...rest }: IconProps) => {
   return (
     <svg
-      className={cn(ICON_COLOR[color], STROKE_COLOR[strokeColor], className)}
+      className={cn(ICON_COLOR[color], className)}
       width={width ? width : ICON_SIZE[size]}
       height={height ? height : ICON_SIZE[size]}
       {...rest}

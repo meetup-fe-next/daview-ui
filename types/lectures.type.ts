@@ -12,4 +12,5 @@ export type Lecutre = {
   frontmatter: ContentsFrontmatter;
   creator: string;
   category: CategoryName;
+  objectID: number;
 };

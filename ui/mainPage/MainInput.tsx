@@ -7,7 +7,7 @@ const MainInput = () => {
   const moveToSearch = () => {
     router.push('/search');
   };
-  return <Input readOnly placeholder="강의명,강의자로 검색" onClick={moveToSearch} />;
+  return <Input placeholder="강의명,강의자로 검색" onClick={moveToSearch} />;
 };
 
 export default MainInput;
