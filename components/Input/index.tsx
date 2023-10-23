@@ -53,7 +53,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
         {isDefaultType && (
           <span className={INPUT_STYLE.LEFT_ICON}>
-            <Search className={cn(disabled && 'opacity-[0.32]')} color="secondary-900" />
+            <Search className={cn(disabled && 'opacity-[0.32]')} color="secondary-600" />
           </span>
         )}
         {isActiveType && (
@@ -70,10 +70,12 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         <input
           ref={ref}
           className={cn(
-            'box-border border-b-2 border-secondary-900 bg-transparent text-[20px] outline-none focus:border-b-primary-500',
-            'placeholder:text-grey-500',
+            'box-border border-b-2  bg-transparent text-[20px] outline-none focus:border-b-grey-900',
+            'placeholder:text-secondary-600',
             'w-full py-[15px]',
             'disabled:opacity-[.32]',
+            { 'border-secondary-600': isDefaultType },
+            { 'border-secondary-900': isValueType },
             { 'pl-[42px] pr-[15px]': isDefaultType || isActiveType },
             { 'pr-[76px]': isValueType },
             { 'pl-[8px]': !isActiveType && isValueType },
@@ -106,7 +108,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
                 onClickClear && onClickClear();
               }}
             >
-              <CloseCircle color="grey-700" size="md" />
+              <CloseCircle color="grey-600" size="md" />
             </button>
             <button
               className={cn(INPUT_STYLE.RIGHT_ICON, 'pr-[8px]')}
@@ -115,7 +117,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
                 onClickSearchButton && onClickSearchButton();
               }}
             >
-              <Search size="md" color={!isFocus ? 'secondary-900' : 'primary-500'} />
+              <Search size="md" color="grey-900" />
             </button>
           </>
         )}
