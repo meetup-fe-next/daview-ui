@@ -30,8 +30,10 @@ const ICON_COLOR: { [key: string]: string } = {
   white: 'text-white',
   'primary-300': 'text-primary-300',
   'primary-500': 'text-primary-500',
+  'secondary-600': 'text-secondary-600',
   'secondary-900': 'text-secondary-900',
   'grey-700': 'text-grey-700',
+  'grey-900': 'text-grey-900',
 } as const;
 
 const IconBase = ({ size = 'md', width, height, color = 'black', className, children, ...rest }: IconProps) => {
