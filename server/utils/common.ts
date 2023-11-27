@@ -66,3 +66,8 @@ export const splitFrontmatterAndMarkdown = (mdContent: string) => {
 export const replaceDashWithSpace = (str: string) => {
   return str.replace(/-/g, ' ');
 };
+
+export const decodebase64 = (base64: string) => {
+  const decodestr = decodeURIComponent(atob(base64));
+  return JSON.parse(decodestr);
+};

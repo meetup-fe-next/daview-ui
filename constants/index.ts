@@ -4,7 +4,7 @@
 export const GITHUB_USER_NAME = 'meetup-fe-next';
 export const GITHUB_REPOSITORY_NAME = 'daview-contents';
 export const GITHUB_REPOSITORY_API_URL = `https://api.github.com/repos/${GITHUB_USER_NAME}/${GITHUB_REPOSITORY_NAME}/contents`;
-export const GITHUB_REPOSITORY_BRANCH = 'develop';
+export const GITHUB_REPOSITORY_BRANCH = 'main';
 
 /**
  * Algolia API 관련
