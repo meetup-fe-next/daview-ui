@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { useGetContributors } from '@/hooks/queries/contributor';
 
 const ContributorsProfile = () => {
-  const { data: contributors } = useGetContributors({ suspense: false });
+  const { data: contributors = [] } = useGetContributors({ suspense: false });
 
   return (
     <div className="absolute bottom-0 mb-[42px]">
