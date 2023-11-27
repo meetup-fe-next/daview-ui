@@ -1,14 +1,12 @@
+'use client';
+
+import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
-import { use } from 'react';
-import { getContributors } from '@/server/controllers/contributors';
-import { ContributorsData } from '@/types/contributors.type';
+
+import { useGetContributors } from '@/hooks/queries/contributor';
 
 const ContributorsProfile = () => {
-  const contributors: ContributorsData[] = use(getContributors());
-
-  if (contributors.length === 0) {
-    return <></>;
-  }
+  const { data: contributors } = useGetContributors({ suspense: false });
 
   return (
     <div className="absolute bottom-0 mb-[42px]">

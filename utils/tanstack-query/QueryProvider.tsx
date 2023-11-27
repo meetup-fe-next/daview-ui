@@ -17,7 +17,6 @@ function QueryProvider({ children }: QueryProviderProps) {
          */
         queries: {
           staleTime: 1000 * 60 * 1, // 1분
-          // cacheTime: 0,
           retry: 1,
           suspense: true,
         },
