@@ -1,5 +1,6 @@
 import githubSdk from '../libs/githubSdk';
 import { decodeBase64AndParseJson } from '../utils/common';
+import camelcaseKeys from 'camelcase-keys';
 
 /**
  * Github Contributor 목록 조회
@@ -10,5 +11,5 @@ export const getContributors = async () => {
   const { content } = await githubSdk.getContents('.all-contributorsrc');
   const { contributors } = decodeBase64AndParseJson(content);
 
-  return contributors;
+  return camelcaseKeys(contributors, { deep: true });
 };

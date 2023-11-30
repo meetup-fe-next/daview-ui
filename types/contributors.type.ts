@@ -1,5 +1,6 @@
 export type ContributorsData = {
   login: string;
-  avatar_url: string;
+  avatarUrl: string;
   profile: string;
+  name: string;
 };

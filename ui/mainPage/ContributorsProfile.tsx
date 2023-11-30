@@ -18,12 +18,12 @@ const ContributorsProfile = () => {
       />
 
       <section className="flex gap-x-3 [&>img]:rounded-[60px] [&>img]:border [&>img]:border-secondary-900">
-        {contributors?.map(({ login, avatar_url, profile }) => {
+        {contributors?.map(({ login, avatarUrl, profile }) => {
           return (
             <Image
               key={login}
-              alt="profile"
-              src={avatar_url}
+              alt={`Daview 기여자 - ${login}`}
+              src={avatarUrl}
               width="40"
               height="40"
               onClick={() => {
