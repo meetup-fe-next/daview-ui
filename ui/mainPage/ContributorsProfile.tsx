@@ -1,10 +1,16 @@
 import Image from 'next/image';
-import { use } from 'react';
+import { useEffect, useState } from 'react';
 import { getContributors } from '@/server/controllers/contributors';
 import { ContributorsData } from '@/types/contributors.type';
 
 const ContributorsProfile = () => {
-  const contributors: ContributorsData[] = use(getContributors());
+  const [contributors, setContributors] = useState<ContributorsData[]>([]);
+  useEffect(() => {
+    (async () => {
+      const data = await getContributors();
+      setContributors(data);
+    })();
+  }, []);
 
   if (contributors.length === 0) {
     return <></>;
@@ -20,7 +26,7 @@ const ContributorsProfile = () => {
         quality={100}
         alt="기여해주신 분들"
       />
-      <section className="flex gap-x-3 [&>img]:rounded-[60px] [&>img]:border [&>img]:border-secondary-900">
+      <section className="flex cursor-pointer gap-x-3 [&>img]:rounded-[60px] [&>img]:border [&>img]:border-secondary-900">
         {contributors.map(({ login, avatar_url, profile }) => {
           return (
             <Image
