@@ -1,12 +1,10 @@
 'use client';
 
-import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
-
 import { useGetContributors } from '@/hooks/queries/contributor';
 
 const ContributorsProfile = () => {
-  const { data: contributors = [] } = useGetContributors({ suspense: false });
+  const { data: contributors } = useGetContributors({ suspense: false });
 
   return (
     <div className="absolute bottom-0 mb-[42px]">
@@ -18,8 +16,9 @@ const ContributorsProfile = () => {
         quality={100}
         alt="기여해주신 분들"
       />
+
       <section className="flex gap-x-3 [&>img]:rounded-[60px] [&>img]:border [&>img]:border-secondary-900">
-        {contributors.map(({ login, avatar_url, profile }) => {
+        {contributors?.map(({ login, avatar_url, profile }) => {
           return (
             <Image
               key={login}

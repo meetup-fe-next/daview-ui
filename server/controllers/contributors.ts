@@ -1,5 +1,5 @@
 import githubSdk from '../libs/githubSdk';
-import { decodebase64 } from '../utils/common';
+import { decodeBase64AndParseJson } from '../utils/common';
 
 /**
  * Github Contributor 목록 조회
@@ -8,7 +8,7 @@ import { decodebase64 } from '../utils/common';
  */
 export const getContributors = async () => {
   const { content } = await githubSdk.getContents('.all-contributorsrc');
-  const { contributors: data } = decodebase64(content);
+  const { contributors } = decodeBase64AndParseJson(content);
 
-  return data;
+  return contributors;
 };

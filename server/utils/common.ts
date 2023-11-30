@@ -67,7 +67,12 @@ export const replaceDashWithSpace = (str: string) => {
   return str.replace(/-/g, ' ');
 };
 
-export const decodebase64 = (base64: string) => {
-  const decodestr = decodeURIComponent(atob(base64));
-  return JSON.parse(decodestr);
+export const decodeBase64AndParseJson = (base64Data: string): any => {
+  // Base64 디코딩
+  const decodedData = Buffer.from(base64Data, 'base64').toString('utf-8');
+
+  // JSON 파싱
+  const jsonData = JSON.parse(decodedData);
+
+  return jsonData;
 };
